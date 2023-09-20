@@ -1,0 +1,3 @@
+-   step 1: run `cp .env.template .env` to create .env file and fill out values into it
+-   step 2: run `npm install` to install the libraries
+-   step 3: run `npm start` to run project

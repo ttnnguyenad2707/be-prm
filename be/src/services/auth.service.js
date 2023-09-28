@@ -9,18 +9,20 @@ class AuthService {
     async registerUser(req, res) {
         const { email, password, firstname,lastname } = req.body;
         try {
-            // hash pass
+
+            const checkEmailExists= await User.find({email:email});
+            if(checkEmailExists) return res.status(400).json("Email has exists");
+
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(password, salt);
 
-            // create user in db
-            const result = await new User({
+            const result =await User.create({
                 firstname: firstname,
                 lastname:lastname,
                 email: email,
                 password: hashed,
 
-            }).save();
+            })
             return result;
 
         } catch (error) {

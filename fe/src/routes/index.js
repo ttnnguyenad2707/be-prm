@@ -1,15 +1,27 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
+import {  createBrowserRouter } from "react-router-dom";
 import Login from "../components/Login.component";
+import Home from "../components/Home.component";
+import Header from "../components/Header/Header.component";
+
+
+
 
 export const appRoutes = createBrowserRouter([
     {
         path: '',
-        element: <Navigate to='/home' />
-    },
-    {
-        path: '/login',
-        element: <Login/>
-    },
-    
-    
+        element: <Header />,
+        children: [
+
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/home',
+                element: <Home />
+            }
+        ]
+    }
+
+
 ])

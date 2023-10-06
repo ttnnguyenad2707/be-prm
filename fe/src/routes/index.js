@@ -19,6 +19,9 @@ export const appRoutes = createBrowserRouter([
             {
                 path: '/home',
                 element: <Landingpage />
+            },
+            {
+                path: '/admin',
             }
         ]
     }

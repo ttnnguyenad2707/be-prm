@@ -3,8 +3,7 @@ import Login from "../components/Login.component";
 import Home from "../components/Home.component";
 import Header from "../components/Header/Header.component";
 import Landingpage from "../page/Landingpage.js";
-
-
+import Adminpage from "../page/Adminpage.js";
 
 
 export const appRoutes = createBrowserRouter([
@@ -21,8 +20,13 @@ export const appRoutes = createBrowserRouter([
                 element: <Landingpage />
             },
             {
-                path: '/admin',
-            }
+                path: '/admin/post',
+                element: <Adminpage action = {'post'}/>
+            },
+            {
+                path: '/admin/account',
+                element: <Adminpage action = {'account'}/>
+            },
         ]
     }
 

@@ -2,7 +2,7 @@ import Category from '../components/Category/Category.js';
 import CarouselProduct from '../components/Carousel/Carousel_Product.js';
 import Footer from '../components/Footer/Footer.js';
 import { Layout, Space, Carousel } from 'antd';
-import './Landingpage.scss';
+import '../scss/Landingpage.scss'
 const Landingpage = () => {
 
     const onChange = (currentSlide) => {

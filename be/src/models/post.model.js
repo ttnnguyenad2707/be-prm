@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
+const slugify = require('slugify');
+const mongoose_delete = require('mongoose-delete');
+
+
 const Post = new mongoose.Schema({
+    category : {
+        type: String,
+    },
     title:{
         type:String,
     },
@@ -34,7 +41,42 @@ const Post = new mongoose.Schema({
     },
     interior:{
         type:[String],
+    },
+    slug: { 
+        type: String, unique: true 
     }
 
 }, { timestamps: true });
+
+Post.plugin(mongoose_delete,{ deletedAt : true, overrideMethods: 'all' });
+
+Post.pre('save', function (next) {
+    if (!this.isModified('title')) {
+      return next();
+    }
+  
+    this.slug = slugify(this.title, { lower: true });
+    this.constructor
+      .findOne({ slug: this.slug })
+      .then(existingDoc => {
+        if (existingDoc) {
+          let suffix = 1;
+          const findUniqueSlug = async () => {
+            const newSlug = `${this.slug}-${suffix}`;
+            const doc = await this.constructor.findOne({ slug: newSlug });
+            if (doc) {
+              suffix++;
+              await findUniqueSlug();
+            } else {
+              this.slug = newSlug;
+              next();
+            }
+          };
+          findUniqueSlug();
+        } else {
+          next();
+        }
+      })
+      .catch(error => next(error));
+  });
 module.exports = mongoose.model("Post", Post);

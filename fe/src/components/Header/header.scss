@@ -1,0 +1,115 @@
+/* logo,search,btn-bell,btn-mess,login,register,btn-post */
+h1, h2, h3, h4, h5, h6{
+    margin: 0 !important;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+.Body{
+    position: relative;
+}
+.background-primary{
+    background-color: #f7efe5;
+
+}
+.header-container{
+    align-items: center;
+    padding-bottom: 5px;
+    
+}
+#logo{
+    font-size: 30px;
+  text-align: center;
+  color: #E66D4F;
+}
+.btn-bell{
+    width: fit-content;
+    cursor: pointer;
+    border: unset;
+    background-color: #f7efe5;
+    position: relative;
+    .list-notification{
+        display: none;
+        position: absolute;
+        background-color:white;
+        width: 250px;
+        padding: 5px;
+        bottom: -2;
+        border-radius: 5px;
+        top: 30px;
+        .notification{
+            border-bottom: solid 1px rgb(210, 206, 206);
+        }
+        .notification:hover{
+            transform: scale(1.025);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+.btn-bell:hover{
+    .list-notification{
+        display: block;
+        opacity: 0;
+        animation: fade-in-from-top 0.5s ease-in forwards;
+    }
+
+}
+
+@keyframes fade-in-from-top {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+.btn-mess {
+    width: fit-content;
+    cursor: pointer;
+    border: unset;
+    background-color: #f7efe5;
+}
+
+.login ,.register  {
+    color: #E66D4F;
+    font-size:large;
+    font-weight: bold;
+    text-decoration: unset;
+}
+
+.btn-post{
+    background-color: #E66D4F;
+    color: white;
+    height: 40px;
+    border: unset;
+    border-radius: 5px;
+    font-size: large;
+    cursor: pointer;
+}
+.margin-right50{
+    margin-right: 20px;
+}
+.btn-list{
+    background-color: #f7efe5;
+    border: unset;
+}
+.number-notification{
+    border-radius: 50%;
+    background-color: #E66D4F;
+    color: black;
+    width: 50%;
+    position:absolute;
+    bottom: 0;
+    right: 0;
+}
+.position-relative{
+    position: relative;
+}
+.search-box{
+    min-width: 900px;
+}

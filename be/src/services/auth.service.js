@@ -11,7 +11,7 @@ class AuthService {
         try {
 
             const checkEmailExists= await User.find({email:email});
-            if(checkEmailExists) return res.status(400).json("Email has exists");
+            if(!checkEmailExists) return res.status(400).json("Email has exists");
 
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(password, salt);

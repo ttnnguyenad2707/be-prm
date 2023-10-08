@@ -25,10 +25,12 @@ export const login = async (
     password
 ) => {
     return await axios.post(
-        `${URL_SERVER}/login`,
+        `${URL_SERVER}/auth/login`,
         {
             email: email,
             password: password
-        }
+        },{
+            withCredentials: true
+          }
     )
 }

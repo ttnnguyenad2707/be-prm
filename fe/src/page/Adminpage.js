@@ -13,7 +13,7 @@ const Adminpage = (props) => {
                         <Menuadmin />
                     </div>
                     <div className="col-10 padding-unset">
-                    {active == 'post' ? <Tablepost/> : <Tableaccount/>}
+                    {active === 'post' ? <Tablepost/> : <Tableaccount/>}
                     </div>
                 </div>
             </div>

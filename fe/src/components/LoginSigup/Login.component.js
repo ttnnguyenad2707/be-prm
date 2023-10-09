@@ -4,7 +4,6 @@ import "./Login.scss"
 import { AiFillGoogleCircle } from 'react-icons/ai'
 import { useNavigate, Outlet, NavLink, useParams, redirect } from 'react-router-dom';
 import { login } from '../../services/auth.service';
-import Cookies from 'js-cookie';
 import { UserContext } from '../../App';
 import { useContext, useState } from "react";
 
@@ -16,15 +15,10 @@ const Login = () => {
         const data = {
             ...values,
         }
-        const token = Cookies.get('accessToken');
-        console.log("cookies : ", token);
 
         try {
             const res = await login(data.email, data.password,);
             setUser(res.data)
-            // document.cookie = `token=${res.token}`;
-            console.log("Res", res);
-            // const cookieValue = res.headers['set-cookie'];
             nav("/");
 
         } catch (error) {

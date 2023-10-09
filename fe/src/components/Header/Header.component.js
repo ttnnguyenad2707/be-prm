@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Col, Row, Input, Space, Dropdown, message, Button, Checkbox, Menu } from 'antd';
-import Icon, { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, UnorderedListOutlined, CaretDownOutlined } from '@ant-design/icons';
+import {  Row, Input, Space, Dropdown, message, Button, Checkbox, Menu } from 'antd';
+import  { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, UnorderedListOutlined, CaretDownOutlined } from '@ant-design/icons';
 import './header.scss'
 
 import { Outlet } from 'react-router-dom';

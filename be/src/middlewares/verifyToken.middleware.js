@@ -8,7 +8,6 @@ const verifyToken = asyncHandler(async (req, res, next) => {
         const accessToken = token.split(" ")[1];
         try {
             const user = jwt.verify(accessToken, ACCESS_KEY);
-            // console.log(user);
             req.user = user;
             next();
         } catch (err) {

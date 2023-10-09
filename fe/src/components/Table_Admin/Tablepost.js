@@ -68,7 +68,7 @@ const Tablepost = () => {
                         <LockOutlined  style={{
                             fontSize: '20px',
                             color: 'red',
-                        }} />
+                        }} /> Lock
                         {/* <i class="bi bi-trash-fill"></i> */}
                     </button>
                     <button className='btn-unlock' onClick={() => {
@@ -77,7 +77,7 @@ const Tablepost = () => {
                         <UnlockOutlined style={{
                             fontSize: '20px',
                             color: 'blue',
-                        }}/>
+                        }}/> Unlock
                     </button>
                 </Space>
             ),

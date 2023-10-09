@@ -5,8 +5,12 @@ import { AiFillGoogleCircle } from 'react-icons/ai'
 import { useNavigate, Outlet, NavLink, useParams, redirect } from 'react-router-dom';
 import { login } from '../../services/auth.service';
 import Cookies from 'js-cookie';
+import { UserContext } from '../../App';
+import { useContext, useState } from "react";
+
 const Login = () => {
     const nav = useNavigate();
+    const { setUser } = useContext(UserContext);
     // Xử lý submit form
     const handleSubmit = async (values, { setFieldError }) => {
         const data = {
@@ -17,6 +21,7 @@ const Login = () => {
 
         try {
             const res = await login(data.email, data.password,);
+            setUser(res.data)
             // document.cookie = `token=${res.token}`;
             console.log("Res", res);
             // const cookieValue = res.headers['set-cookie'];

@@ -10,12 +10,12 @@ export const register = async (
     password
 ) => {
     return await axios.post(
-        `${URL_SERVER}/register`,
+        `${URL_SERVER}/auth/register`,
         {
             email: email,
             password: password,
-            first_name: firstName,
-            last_name: lastName
+            firstname: firstName,
+            lastname: lastName
         }
     )
 }

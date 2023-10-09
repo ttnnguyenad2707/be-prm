@@ -1,26 +1,27 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import "./Login.scss"
+import "./SignUp.scss"
 import { AiFillGoogleCircle } from 'react-icons/ai'
 import { useNavigate, Outlet, NavLink, useParams, redirect } from 'react-router-dom';
-import { login } from '../../services/auth.service';
+import { login, register } from '../../services/auth.service';
 import Cookies from 'js-cookie';
-const Login = () => {
+const SignUp = () => {
     const nav = useNavigate();
     // Xử lý submit form
     const handleSubmit = async (values, { setFieldError }) => {
         const data = {
             ...values,
         }
-        const token = Cookies.get('accessToken');
-        console.log("cookies : ", token);
+        console.log("data", data);
+        // const token = Cookies.get('accessToken');
+        // console.log("cookies : ", token);
 
         try {
-            const res = await login(data.email, data.password,);
+          const res = await register(data.firstName,data.lastName,data.email, data.password);
             // document.cookie = `token=${res.token}`;
-            console.log("Res", res);
+              console.log("Res", res);
             // const cookieValue = res.headers['set-cookie'];
-            nav("/");
+            // nav("/");
 
         } catch (error) {
             if (error.response && error.response.data && error.response.data.error) {
@@ -36,6 +37,7 @@ const Login = () => {
 
                 }
             }
+            console.log("error",error);
         }
 
 
@@ -69,7 +71,7 @@ const Login = () => {
                 <div className="col-md-4 col-6  mt-5 text-center login-form card"
 
                 >
-                    <h1 style={{ color: '#FFBB5C' }}>Login</h1>
+                    <h1 style={{ color: '#FFBB5C' }}>Register</h1>
                     <Formik
                         initialValues={
                             {
@@ -82,6 +84,20 @@ const Login = () => {
                     >
                         <Form style={fieldStyle}
                             className='card-body '>
+                            <div className='my-3'>
+                                <Field type="text"
+                                    name="firstName"
+                                    placeholder="Input your First Name"
+                                    className="form-control form-control-lg field-input" />
+                                {/* <h5><ErrorMessage style={{ color: 'red' }} name="firstname" component="div" /> </h5> */}
+                            </div>
+                            <div className='my-3'>
+                                <Field type="text"
+                                    name="lastName"
+                                    placeholder="Input your Last Name"
+                                    className="form-control form-control-lg field-input" />
+                                {/* <h5><ErrorMessage style={{ color: 'red' }} name="lastname" component="div" /> </h5> */}
+                            </div>
                             <div className='my-3'>
                                 <Field type="email"
                                     name="email"
@@ -104,24 +120,24 @@ const Login = () => {
                             <div className=" justify-content-center text-center mt-3 ">
                                 <button
                                     className=' w-100 my-2 col-md-11 btn btn-light btn-lg btn-Login m-control-lg '
-                                    type="submit">Login</button>
+                                    type="submit">Register</button>
                             </div>
 
-                            <div className=" justify-content-center text-center mb-3 ">
+                            {/* <div className=" justify-content-center text-center mb-3 ">
                                 <button
                                     className='w-100 col-md-11 btn btn-light btn-lg btn-Login m-control-lg '
                                     type="submit"> <AiFillGoogleCircle style={{ fontSize: '29px' }} /> Login with google</button>
-                            </div>
+                            </div> */}
                             <h6 className="my-1 text-end">
                                 <NavLink to={`/register`} style={{ color: '#e25e3e' }}>forgot your password</NavLink>
 
                             </h6>
                             <div className="my-3">
                                 <p className="font-semibold text-center text-gray-600 text-xl ">
-                                    Don’t have an account?
+                                    Alraeady an account?
                                 </p>
                                 <h5 className="font-semibold text-gray-900 text-xl tracking-[-0.40px] w-auto">
-                                    <NavLink to={`/register`} style={{ color: '#e25e3e' }}>  Create Account</NavLink>
+                                    <NavLink to={`/login`} style={{ color: '#e25e3e' }}>  Login</NavLink>
                                 </h5>
                             </div>
 
@@ -135,4 +151,4 @@ const Login = () => {
     );
 }
 
-export default Login
+export default SignUp

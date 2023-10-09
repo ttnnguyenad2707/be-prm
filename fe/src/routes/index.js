@@ -1,4 +1,4 @@
-import {  createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Login from "../components/LoginSigup/Login.component";
 import Home from "../components/Home.component";
 import Header from "../components/Header/Header.component";
@@ -9,6 +9,7 @@ import Profile from "../components/Profile/Profile.component";
 import ChangePass from "../components/Profile/ChangePass.component";
 import Landingpage from "../page/Landingpage.js";
 import Adminpage from "../page/Adminpage.js";
+import SignUp from "../components/LoginSigup/SignUp";
 
 
 export const appRoutes = createBrowserRouter([
@@ -16,10 +17,7 @@ export const appRoutes = createBrowserRouter([
         path: '',
         element: <Header />,
         children: [
-            {
-                path: '/login',
-                element: <Login />
-            },
+
             {
                 path: '/',
                 element: <Home />
@@ -38,14 +36,22 @@ export const appRoutes = createBrowserRouter([
             },
             {
                 path: '/admin/post',
-                element: <Adminpage action = {'post'}/>
+                element: <Adminpage action={'post'} />
             },
             {
                 path: '/admin/account',
-                element: <Adminpage action = {'account'}/>
+                element: <Adminpage action={'account'} />
             },
         ]
-    }
+    },
+    {
+        path: '/login',
+        element: <Login />
+    },
+    {
+        path: '/register',
+        element: <SignUp />
+    },
 
 
 ])

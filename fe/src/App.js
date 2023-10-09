@@ -13,7 +13,7 @@ export const UserContext = createContext({
 });
 function App() {
   const [user, setUser] = useState({});
-  const token = Cookies.get('accessToken');
+  // const token = Cookies.get('accessToken');
   
   return (
     <UserContext.Provider value={{ user, setUser }}>

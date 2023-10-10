@@ -11,7 +11,6 @@ import Landingpage from "../page/Landingpage.js";
 import Adminpage from "../page/Adminpage.js";
 import SignUp from "../components/LoginSigup/SignUp";
 
-
 export const appRoutes = createBrowserRouter([
     {
         path: '',
@@ -42,6 +41,7 @@ export const appRoutes = createBrowserRouter([
                 path: '/admin/account',
                 element: <Adminpage action={'account'} />
             },
+            
         ]
     },
     {

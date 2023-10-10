@@ -69,7 +69,7 @@ const Tableaccount = () => {
                         <LockOutlined  style={{
                             fontSize: '20px',
                             color: 'red',
-                        }} />
+                        }} /> Lock
                         {/* <i class="bi bi-trash-fill"></i> */}
                     </button>
                     <button className='btn-unlock' onClick={() => {
@@ -78,7 +78,7 @@ const Tableaccount = () => {
                         <UnlockOutlined style={{
                             fontSize: '20px',
                             color: 'blue',
-                        }}/>
+                        }}/> Unlock
                     </button>
                     <button className='btn-delete' onClick={() => {
                         console.log(record);
@@ -86,7 +86,7 @@ const Tableaccount = () => {
                         <DeleteOutlined style={{
                             fontSize: '20px',
                             color: 'red',
-                        }} />
+                        }} /> Delete
                     </button>
                     <button className='btn-update-role'  onClick={() => {
                         console.log(record);
@@ -94,7 +94,7 @@ const Tableaccount = () => {
                         <PlusCircleOutlined style={{
                             fontSize: '20px',
                             color: 'green',
-                        }} />
+                        }} /> Update
                     </button>
                     <button className='btn-update-rollback'  onClick={() => {
                         console.log(record);
@@ -102,7 +102,7 @@ const Tableaccount = () => {
                         <MinusCircleOutlined style={{
                             fontSize: '20px',
                             color: 'black',
-                        }}/>
+                        }}/> Rollback
                     </button>
                 </Space>
             ),

@@ -12,13 +12,13 @@ import { checkUser } from '../../services/auth.service.js';
 
 const Headercomponent = () => {
     const token = Cookies.get('accessToken');
-    console.log("token header",token);
+    console.log("token header", token);
     const [user, setUser] = useState({});
 
     const navigate = useNavigate()
     useEffect(() => {
         if (!token) {
-            navigate('/login');
+            navigate('/');
             return;
         }
 
@@ -112,7 +112,7 @@ const Headercomponent = () => {
                             <MessageOutlined style={{ fontSize: '25px', color: '#e25e3e' }} />
                             <p className='number-notification'>1</p>
                         </button>
-                    {user ? <a className='login'> ddax Đăng nhập</a> : <a className='login'>Đăng nhập</a>}  
+                        {user ? <a className='login'> {user.lastname}</a> : <a className='login'>Đăng nhập</a>}
                         <button className='btn-post'><PlusOutlined style={{ fontSize: '15px', color: 'white' }} /> Đăng tin</button>
                     </div>
                 </Row>

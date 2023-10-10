@@ -38,6 +38,7 @@ export const login = async (
 export const checkUser = async (token) => {
     return await axios.post(`${URL_SERVER}/auth/check-user`, null, {
         withCredentials: true,
+        
         headers: {
             token: `Bearer ${token}`,
         }

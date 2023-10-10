@@ -34,7 +34,7 @@ class AuthService {
         return jwt.sign({
             id: user.id,
             admin: user.admin,
-        }, ACCESS_KEY, { expiresIn: "30s" });
+        }, ACCESS_KEY, { expiresIn: "2h" });
     }
     async genRefreshToken(user) {
         return jwt.sign({

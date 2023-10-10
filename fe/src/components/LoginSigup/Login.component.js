@@ -9,7 +9,7 @@ import { useContext, useState } from "react";
 
 const Login = () => {
     const nav = useNavigate();
-    const { setUser } = useContext(UserContext);
+
     // Xử lý submit form
     const handleSubmit = async (values, { setFieldError }) => {
         const data = {
@@ -18,7 +18,7 @@ const Login = () => {
 
         try {
             const res = await login(data.email, data.password,);
-            setUser(res.data)
+           
             nav("/");
 
         } catch (error) {

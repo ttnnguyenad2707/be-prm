@@ -1,20 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Row, Input, Space, Dropdown, message, Button, Checkbox, Menu } from 'antd';
 import Icon, { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import Searchbox from '../Searchbox/Searchbox.component.js';
 import './header.scss'
 
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { checkUser } from '../../services/auth.service.js';
 
 /* logo , search space with icon search, icon notifiaction, icon search, link login, link register, button post */
 
 const Headercomponent = () => {
+    const token = Cookies.get('accessToken');
+    console.log("token header",token);
+    const [user, setUser] = useState({});
+
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+
+        checkUser(token)
+            .then((res) => {
+                setUser(res.data);
+            })
+            .catch((error) => {
+                if (error.response && error.response.status === 403) {
+                    navigate('/login');
+                }
+            });
+    }, [token, navigate]);
+
     const [selectedKeys, setSelectedKeys] = useState([]);
     const { Search } = Input;
     const onSearch = (value, _e, info) => console.log(info?.source, value);
     const onClick = ({ key }) => {
         message.info(`Click on item ${key}`);
     };
+
     const items = [
         {
             label: '1st menu item',
@@ -87,7 +112,7 @@ const Headercomponent = () => {
                             <MessageOutlined style={{ fontSize: '25px', color: '#e25e3e' }} />
                             <p className='number-notification'>1</p>
                         </button>
-                        <a className='login'>Đăng nhập</a>
+                    {user ? <a className='login'> ddax Đăng nhập</a> : <a className='login'>Đăng nhập</a>}  
                         <button className='btn-post'><PlusOutlined style={{ fontSize: '15px', color: 'white' }} /> Đăng tin</button>
                     </div>
                 </Row>

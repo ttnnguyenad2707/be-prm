@@ -3,10 +3,35 @@ import CarouselProduct from '../components/Carousel/Carousel_Product.js';
 import Footer from '../components/Footer/Footer.js';
 import { Layout, Space, Carousel } from 'antd';
 import '../scss/Landingpage.scss'
-const Landingpage = () => {
+import { UserContext } from '../App';
+import React, { useContext, useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import { checkUser } from '../services/auth.service';
+import {useNavigate}from 'react-router-dom'
 
+const Landingpage = () => {
+    const [user, setUser] = useState({});
+    const navigate = useNavigate();
+    const token = Cookies.get('accessToken');
+  
+    useEffect(() => {
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+  
+      checkUser(token)
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 403) {
+            navigate('/login');
+          }
+        });
+    }, [token, navigate]);
     const onChange = (currentSlide) => {
-        console.log(currentSlide);
+        // console.log(currentSlide);
     };
     return (
         <>

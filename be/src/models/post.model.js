@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const slugify = require('slugify');
-const mongoose_delete = require('mongoose-delete');
 
 
 const Post = new mongoose.Schema({
@@ -44,11 +43,18 @@ const Post = new mongoose.Schema({
     },
     slug: { 
         type: String, unique: true 
+    },
+    deleted: {
+      type: Boolean,
+      default: false,
+    },
+    deletedAt: {
+      type: Date,
+      default: null,
     }
 
 }, { timestamps: true });
 
-Post.plugin(mongoose_delete,{ deletedAt : true, overrideMethods: 'all' });
 
 Post.pre('save', function (next) {
     if (!this.isModified('title')) {

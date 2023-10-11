@@ -1,6 +1,5 @@
 // @ts-ignore
 const Post = require('../models/post.model')
-const mongoose_delete = require('mongoose-delete');
 
 
 class PostService {
@@ -23,11 +22,15 @@ class PostService {
         const result =await Post.find({}).limit(quantityOfPost);
         return res.status(200).json(result);
     }
+    async getPosted(req,res){
+        const result =await Post.find({deleted: false});
+        return res.status(200).json(result);
+    }
     async deletePost(req,res){
         const idPost = await req.params.id;
         
         try {
-            const result = await Post.delete({_id: idPost});
+            const result = await Post.findByIdAndUpdate({_id: idPost},{deleted: true,deletedAt: Date.now()});
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({Error: error.toString()})
@@ -39,7 +42,7 @@ class PostService {
 
     async loadDeletedPost(req,res){
         try {
-            const result = await Post.findDeleted();
+            const result = await Post.find({deleted: true});
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({Error: error.toString()})
@@ -49,7 +52,7 @@ class PostService {
     async restorePost(req,res){
         const idPost = await req.params.id;
         try {
-            const result = await Post.restore({_id: idPost});
+            const result = await Post.findByIdAndUpdate({_id: idPost},{deleted: false,deletedAt: null});
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({Error: error.toString()})
@@ -69,6 +72,15 @@ class PostService {
         }  
     }
 
+    async getPostedById(req,res){
+        const idPost = await req.params.id;
+        try {
+            const result = await Post.find({_id: idPost,deleted: false});
+            return res.status(200).json(result);
+        } catch (error) {
+            return res.status(500).json({Error: error.toString()})
+        }  
+    }
 }
 
 module.exports = new PostService();

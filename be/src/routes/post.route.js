@@ -3,13 +3,16 @@ const PostController=require("../controllers/post.controller")
 const {validatePOST,validatePUT}=require('../validations/post.validate');
 const {verifyToken}=require("../middlewares/verifyToken.middleware");
 
-router.post('/',verifyToken,validatePOST, PostController.createOne);
+router.post('/',validatePOST, PostController.createOne);
 router.put('/:id',verifyToken,validatePUT, PostController.updateOne);
 router.get('/getByNumberPost',PostController.readPostWithQuantity);
-router.delete('/:id',verifyToken,PostController.deletePost);
-router.post('/:id',verifyToken, PostController.restorePost);
-router.get('/getdeletedpost',verifyToken,PostController.loadDeletedPost);
-router.delete('/destroy/:id',verifyToken,PostController.destroyPostById)
+router.get('/getPosted',PostController.getPosted);
+router.delete('/:id',PostController.deletePost);
+router.post('/:id', PostController.restorePost);
+router.get('/getdeletedpost',PostController.loadDeletedPost);
+router.delete('/destroy/:id',PostController.destroyPostById)
+router.get('/:id',PostController.getPostedById);
+
 
 
 

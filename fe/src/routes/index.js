@@ -6,6 +6,7 @@ import Profile from "../components/Profile/Profile.component";
 import ChangePass from "../components/Profile/ChangePass.component";
 import Landingpage from "../page/Landingpage.js";
 import Posted from "../components/UserStored/Posted.component";
+import PostEdit from "../components/PostedAction/PostEdit.component";
 
 
 
@@ -38,6 +39,10 @@ export const appRoutes = createBrowserRouter([
             {
                 path: '/stored/posted',
                 element: <Posted />
+            },
+            {
+                path: '/stored/posted/:id',
+                element: <PostEdit />
             }
 
         ]

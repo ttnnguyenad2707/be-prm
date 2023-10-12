@@ -28,10 +28,10 @@ module.exports = {
                 .not(null)
                 .only()
                 .required(),
-            password: Joi.string()
-                .min(8)
-                .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$')) // Mật khẩu phải chứa ít nhất một chữ cái thường, một chữ cái hoa và một số
-                .required(),
+            // password: Joi.string()
+            //     .min(8)
+            //     .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$')) // Mật khẩu phải chứa ít nhất một chữ cái thường, một chữ cái hoa và một số
+            //     .required(),
         }).validateAsync(req.body, { abortEarly: false });
 
         next();

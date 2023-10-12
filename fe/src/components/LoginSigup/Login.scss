@@ -1,0 +1,38 @@
+.login_container {
+  // height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: #e25e3e;
+
+  .row {
+    margin-top: 100px;
+    .login-form {
+      box-shadow: 2px 5px 10px 0 rgba(255, 255, 255, 0.5);
+      background-color: #fff;
+     
+      .card-body {
+        height: 450px;
+      }
+      .field-input {
+        background-color: #ffbb5c;
+        color: #fff;
+      }
+      .field-input::placeholder {
+        color: #fff;
+      }
+      .btn-Login {
+        background-color: #ff9b50;
+        color: #fff;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .btn-Login:hover {
+        background-color: #e25e3e;
+        color: #fff;
+      }
+    }
+  }
+}

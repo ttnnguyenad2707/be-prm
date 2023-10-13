@@ -4,9 +4,14 @@ import Header from "../components/Header/Header.component";
 import Profile from "../components/Profile/Profile.component";
 import ChangePass from "../components/Profile/ChangePass.component";
 import Landingpage from "../page/Landingpage.js";
+import Posted from "../components/UserStored/Posted.component";
+import PostEdit from "../components/PostedAction/PostEdit.component";
+
+
+
 import Adminpage from "../page/Adminpage.js";
 import SignUp from "../components/LoginSigup/SignUp";
-import CreatePostPage from "../page/CreatePostPage";
+import CreatePost from "../components/CreatePost/CreatePost.component";
 
 export const appRoutes = createBrowserRouter([
     {
@@ -31,6 +36,19 @@ export const appRoutes = createBrowserRouter([
             //     element: <Landingpage />
             // },
             {
+                path: '/home',
+                element: <Landingpage />
+            },
+            {
+                path: '/stored/posted',
+                element: <Posted />
+            },
+            {
+                path: '/stored/posted/:id',
+                element: <PostEdit />
+            },
+            {
+
                 path: '/admin/post',
                 element: <Adminpage action={'post'} />
             },
@@ -38,9 +56,9 @@ export const appRoutes = createBrowserRouter([
                 path: '/admin/account',
                 element: <Adminpage action={'account'} />
             },
-             {
+            {
                 path: '/post/create',
-                element: <CreatePostPage />
+                element: <CreatePost/>
             },
             
         ]

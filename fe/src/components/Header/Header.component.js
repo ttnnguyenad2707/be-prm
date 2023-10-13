@@ -12,7 +12,6 @@ import { checkUser } from '../../services/auth.service.js';
 
 const Headercomponent = () => {
     const token = Cookies.get('accessToken');
-    console.log("token header", token);
     const [user, setUser] = useState({});
 
     const navigate = useNavigate()

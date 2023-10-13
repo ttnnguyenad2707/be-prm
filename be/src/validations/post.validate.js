@@ -4,6 +4,7 @@ const asyncHandler = require('../utils/async-handler');
 module.exports = {
     validatePOST: asyncHandler(async (req, res, next) => {
         await Joi.object({
+            category: Joi.string().not(null).required(),
             title: Joi.string().not(null).required(),
             description: Joi.string().allow(null, ''),
             address: Joi.string()

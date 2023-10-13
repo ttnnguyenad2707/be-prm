@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const cloudinary = require('cloudinary').v2;
 
 const { SERVER_PORT, MONGOODB_URL } = process.env;
 
@@ -16,6 +17,12 @@ app.use(
   '/api/v1',
   require('./routes')
 );
+
+cloudinary.config({
+  cloud_name: 'dtpujfoo8',
+  api_key: '697855136624351',
+  api_secret: 'gYkgLXmSaCiVhCM40clYpA_dFr8'
+});
 
 const startServer = async () => {
   try {

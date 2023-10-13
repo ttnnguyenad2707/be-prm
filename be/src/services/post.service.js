@@ -1,5 +1,6 @@
 // @ts-ignore
 const Post = require('../models/post.model')
+const cloudinary = require('cloudinary').v2;
 
 
 class PostService {
@@ -14,6 +15,17 @@ class PostService {
             res.status(500).json({error: error.toString()})
         }
     }
+    async upload(req,res){
+        try {
+            const result = await cloudinary.uploader.upload(req.file.buffer);
+            res.json(result);
+        } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Something went wrong' });
+        }
+    }
+    
+
     async updateOne(req,res){
         const {}=req.body;
     }

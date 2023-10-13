@@ -14,22 +14,22 @@ const Landingpage = () => {
     const navigate = useNavigate();
     const token = Cookies.get('accessToken');
   
-    useEffect(() => {
-      if (!token) {
-        navigate('/');
-        return;
-      }
+    // useEffect(() => {
+    //   if (!token) {
+    //     navigate('/');
+    //     return;
+    //   }
   
-      checkUser(token)
-        .then((res) => {
-          setUser(res.data);
-        })
-        .catch((error) => {
-          if (error.response && error.response.status === 403) {
-            navigate('/login');
-          }
-        });
-    }, [token, navigate]);
+    //   checkUser(token)
+    //     .then((res) => {
+    //       setUser(res.data);
+    //     })
+    //     .catch((error) => {
+    //       if (error.response && error.response.status === 403) {
+    //         navigate('/login');
+    //       }
+    //     });
+    // }, [token, navigate]);
     const onChange = (currentSlide) => {
         // console.log(currentSlide);
     };

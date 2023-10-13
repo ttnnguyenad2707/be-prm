@@ -6,6 +6,7 @@ import ChangePass from "../components/Profile/ChangePass.component";
 import Landingpage from "../page/Landingpage.js";
 import Adminpage from "../page/Adminpage.js";
 import SignUp from "../components/LoginSigup/SignUp";
+import CreatePostPage from "../page/CreatePostPage";
 
 export const appRoutes = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ export const appRoutes = createBrowserRouter([
             {
                 path: '/admin/account',
                 element: <Adminpage action={'account'} />
+            },
+             {
+                path: '/post/create',
+                element: <CreatePostPage />
             },
             
         ]

@@ -17,13 +17,32 @@ const Searchbox = () => {
   const showModal = () => {
     setOpen(true);
   };
-  const options = [];
-  for (let i = 10; i < 36; i++) {
-    options.push({
-      label: i.toString(36) + i,
-      value: i.toString(36) + i,
-    });
-  }
+  const optionsLocation = [
+    { value: 1, label: 'Hoa Lac' },
+    { value: 2, label: 'Thach That' },
+    { value: 3, label: 'Quoc Oai' },
+    { value: 4, label: 'Son Tay' },
+    { value: 5, label: 'Phuc Tho' },
+    { value: 6, label: 'Ha Noi' }
+  ];
+  const optionsAcreage = [
+    { value: '10', label: '10' },
+    { value: '20', label: '20' },
+    { value: '30', label: '30' },
+    { value: '40', label: '40' },
+    { value: '50', label: '50' }
+  ];
+  const optionsPrice = [
+    { value: '1.000.000-3.000.000', label: '1.000.000-3.000.000' },
+    { value: '3.000.000-5.000.000', label: '3.000.000-5.000.000' }
+  ];
+  
+  const optionsUtilities = [
+    { value: 'Tủ Lạnh', label: 'Tủ Lạnh' },
+    { value: 'Điều Hòa', label: 'Điều Hòa' },
+    { value: 'Bình nóng lạnh', label: 'Bình nóng lạnh' },
+    { value: 'Máy giặt', label: 'Máy giặt' }
+  ];
   const handleChange = (value) => {
     console.log(`selected ${value}`);
     category.push(value);
@@ -68,9 +87,9 @@ const Searchbox = () => {
               style={{
                 width: '50%',
               }}
-              placeholder="Please select"
+              placeholder="Vị Trí"
               onChange={handleChange}
-              options={options}
+              options={optionsLocation}
             />
             <Select
               mode="multiple"
@@ -78,9 +97,9 @@ const Searchbox = () => {
               style={{
                 width: '50%',
               }}
-              placeholder="Please select"
+              placeholder="Diện Tích"
               onChange={handleChange}
-              options={options}
+              options={optionsAcreage}
             />
           </div>
           <div className='select-option d-flex column-gap-2'>
@@ -90,9 +109,9 @@ const Searchbox = () => {
               style={{
                 width: '50%',
               }}
-              placeholder="Please select"
+              placeholder="Giá Tiền"
               onChange={handleChange}
-              options={options}
+              options={optionsPrice}
             />
             <Select
               mode="multiple"
@@ -100,9 +119,9 @@ const Searchbox = () => {
               style={{
                 width: '50%',
               }}
-              placeholder="Please select"
+              placeholder="Tiện Ích"
               onChange={handleChange}
-              options={options}
+              options={optionsUtilities}
             />
           </div>
         </div>

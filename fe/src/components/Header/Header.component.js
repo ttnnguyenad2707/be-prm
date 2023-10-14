@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row, Input, Space, Dropdown, message, Button, Checkbox, Menu } from 'antd';
-import Icon, { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import Icon, { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, UnorderedListOutlined,UserOutlined  } from '@ant-design/icons';
 import Searchbox from '../Searchbox/Searchbox.component.js';
 import './header.scss'
 import { Link, NavLink } from 'react-router-dom';
@@ -75,7 +75,7 @@ const Headercomponent = () => {
         <div className='Body'>
             <div className='position-sticky top-0 start-0 end-0 z-1 background-primary' style={{ padding: '15px 0' }}>
                 <Row className='header-container container-fluid justify-content-between ps-5 pe-5'>
-                    <div className='d-flex align-item-center gap-1'>
+                    <div className='d-flex align-item-center gap-3'>
                         <h1 id='logo'>HomeRadar</h1>
                         <button className='btn-list'>
                             <Dropdown
@@ -97,7 +97,7 @@ const Headercomponent = () => {
                     {/* <Col >
                         
                     </Col> */}
-                    <div className='d-flex align-items-center gap-3'>
+                    <div className='d-flex align-items-center gap-4'>
                         <div className='search-box' >
                             <Searchbox />
                         </div>
@@ -119,7 +119,8 @@ const Headercomponent = () => {
                         </button>
                         {/* {user ? <a className='login'> {user.lastname}</a> : <a className='login'>Đăng nhập</a>} */}
                         {user ? (
-                            <NavLink className='login' style={{ color: '#E66D4F' }}>
+                            <NavLink className='login d-flex flex-column justify-content-center' style={{ color: '#E66D4F' }}>
+                                <UserOutlined  style={{ color: '#E66D4F', fontSize: '30px' }}/>
                                 {user.lastname}
                             </NavLink>
                         ) : (

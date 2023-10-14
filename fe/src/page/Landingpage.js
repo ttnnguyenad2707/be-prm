@@ -7,9 +7,8 @@ import { UserContext } from '../App';
 import React, { useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { checkUser } from '../services/auth.service';
-import {getPostedStore} from '../services/post.service.js';
-import { useNavigate } from 'react-router-dom'
-
+import { getPostedStore } from '../services/post.service.js';
+import { useNavigate, NavLink } from 'react-router-dom'
 const Landingpage = () => {
     const [user, setUser] = useState({});
     const [data, setData] = useState();
@@ -69,17 +68,23 @@ const Landingpage = () => {
                     </div>
                 </Carousel>
             </div>
-            <div className="container list-category margin-top2">
-                <h3 className="title-1">Dịch Vụ</h3>
+            <div className="container list-category margin-top2 d-flex flex-column gap-3">
+                <h3 className="title-1">Dịch Vụ </h3>
                 <Category />
             </div>
-            <div className="container list-product-new margin-top2">
-                <h3 className="title-1">Nhà trọ mới</h3>
-                <CarouselProduct data = {data} />
+            <div className="container list-product-new margin-top2 d-flex flex-column gap-3">
+
+                <NavLink className=' d-flex flex-column justify-content-center'>
+                    <h3 className="title-1">Nhà trọ mới </h3>
+                </NavLink>
+
+                <CarouselProduct data={data} />
             </div>
-            <div className="container list-product margin-top2">
+            <div className="container list-product margin-top2 d-flex flex-column gap-3">
+                <NavLink className=' d-flex flex-column justify-content-center'>
                 <h3 className="title-1">Danh sách nhà trọ</h3>
-                <CarouselProduct data = {data}/>
+                </NavLink>
+                <CarouselProduct data={data} />
             </div>
             <div className=" margin-top2">
                 <Footer />

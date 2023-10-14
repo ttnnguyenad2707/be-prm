@@ -40,6 +40,7 @@ const CarouselProduct = ({ data }) => {
                                 hoverable
                                 style={{
                                     width: '95%',
+                                    minHeight: '480px'
                                 }}
                                 cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
                                 onClick={() => displayDetails(post._id)}

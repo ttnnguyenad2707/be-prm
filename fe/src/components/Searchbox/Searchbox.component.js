@@ -78,7 +78,7 @@ const Searchbox = () => {
         okText="Search"
       >
         <div className='d-flex flex-column row-gap-3'>
-          <Search placeholder="Tìm kiếm phòng trọ..." onSearch={onSearch} onChange={handleChangeInput} size='large' />
+          <Search placeholder="Tìm kiếm phòng trọ..." onSearch={onSearch} onChange={handleChangeInput} size='30px' />
           <h6>Filter</h6>
           <div className='select-option d-flex column-gap-2'>
             <Select

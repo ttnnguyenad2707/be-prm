@@ -97,12 +97,12 @@ const Headercomponent = () => {
                     {/* <Col >
                         
                     </Col> */}
-                    <div className='d-flex align-items-center gap-4'>
+                    <div className='d-flex align-items-center gap-5'>
                         <div className='search-box' >
                             <Searchbox />
                         </div>
                         <button className='btn-bell position-relative'>
-                            <BellOutlined style={{ fontSize: '25px', color: '#e25e3e' }} />
+                            <BellOutlined style={{ fontSize: '30px', color: '#e25e3e' }} />
                             <p className='number-notification' >1</p>
                             <div className='list-notification'>
                                 <div className='notification'>
@@ -114,7 +114,7 @@ const Headercomponent = () => {
                             </div>
                         </button>
                         <button className='btn-mess position-relative'>
-                            <MessageOutlined style={{ fontSize: '25px', color: '#e25e3e' }} />
+                            <MessageOutlined style={{ fontSize: '30px', color: '#e25e3e' }} />
                             <p className='number-notification'>1</p>
                         </button>
                         {/* {user ? <a className='login'> {user.lastname}</a> : <a className='login'>Đăng nhập</a>} */}

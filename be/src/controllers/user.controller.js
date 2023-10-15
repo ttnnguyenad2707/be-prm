@@ -10,6 +10,8 @@ module.exports = {
         const user=await UserService.updateOne(req,res);
     }),
 
-   
+   getUserlist: asyncHandler(async (req,res) => {
+        const listUsers = await UserService.getUserlist(req,res);
+   })
 
 };

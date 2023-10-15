@@ -12,8 +12,24 @@ class UserService {
             return res.status(500).json({"error":error.message});
         }
     }
-    
-
+    // get user list (admin page)
+    async getUserlist(req,res){
+        try {
+            const result= await User.find();
+            return res.status(201).json({"message":"Update successfully","data":result});
+        } catch (error) {
+            return res.status(501).json({"error":error.message});
+        }
+    }
+    async updateRole(req,res){
+        const Id = req.body;
+        try {
+            const result= await User.findByIdAndUpdate({_id: Id}, {admin: true});
+            return res.status(202).json({"message":"Update successfully","data":result});
+        } catch (error) {
+            return res.status(502).json({"error":error.message});
+        }
+    }
 
 }
 

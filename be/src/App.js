@@ -4,7 +4,6 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cloudinary = require('cloudinary').v2;
-
 const { SERVER_PORT, MONGOODB_URL } = process.env;
 
 const app = express();
@@ -36,5 +35,4 @@ const startServer = async () => {
     console.error("Error connecting to MongoDB:", err);
   }
 };
-
 startServer();

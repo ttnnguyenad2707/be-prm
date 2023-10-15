@@ -6,7 +6,7 @@ import ChangePass from "../components/Profile/ChangePass.component";
 import Landingpage from "../page/Landingpage.js";
 import Posted from "../components/UserStored/Posted.component";
 import PostEdit from "../components/PostedAction/PostEdit.component";
-
+import SearchResultpage from "../page/Searchpage.js";
 
 
 import Adminpage from "../page/Adminpage.js";
@@ -63,7 +63,10 @@ export const appRoutes = createBrowserRouter([
                 element: <CreatePostPage/>
 
             },
-            
+            {
+                path: '/search',
+                element: <SearchResultpage/>
+            },
         ]
     },
     {

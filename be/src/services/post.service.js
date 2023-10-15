@@ -7,23 +7,23 @@ class PostService {
 
     
     async createOne(req,res){
-        const {category,title,description,address,area,maxPeople,price,deposit,security,utils,interior}=req.body;
+        const {category,title,description,address,area,maxPeople,price,deposit,security,utils,interior,images}=req.body;
         try {
-            const result = await Post.create({category,title,description,address,area,maxPeople,price,deposit,security,utils,interior});
+            const result = await Post.create({category,title,description,address,area,maxPeople,price,deposit,security,utils,interior,images});
             return res.status(200).json(result)
         } catch (error) {
             res.status(500).json({error: error.toString()})
         }
     }
-    async upload(req,res){
-        try {
-            const result = await cloudinary.uploader.upload(req.file.buffer);
-            res.json(result);
-        } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: 'Something went wrong' });
-        }
-    }
+    // async upload(req,res){
+    //     try {
+    //         const result = await cloudinary.uploader.upload(req.file.buffer);
+    //         res.json(result);
+    //     } catch (error) {
+    //     console.log(error);
+    //     res.status(500).json({ error: 'Something went wrong' });
+    //     }
+    // }
     
 
     async updateOne(req,res){

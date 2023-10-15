@@ -7,13 +7,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { checkUser } from '../../services/auth.service.js';
+import CreatePostPage from '../../page/CreatePostPage.js';
 
 /* logo , search space with icon search, icon notifiaction, icon search, link login, link register, button post */
 
 const Headercomponent = () => {
     const token = Cookies.get('accessToken');
     const [user, setUser] = useState(null);
-
     const navigate = useNavigate()
     useEffect(() => {
         if (!token) {
@@ -23,6 +23,7 @@ const Headercomponent = () => {
 
         checkUser(token)
             .then((res) => {
+                
                 setUser(res.data);
             })
             .catch((error) => {
@@ -132,7 +133,7 @@ const Headercomponent = () => {
                     </div>
                 </Row>
             </div>
-            <Outlet />
+            <Outlet context={[user]}/>
         </div>
     );
 }

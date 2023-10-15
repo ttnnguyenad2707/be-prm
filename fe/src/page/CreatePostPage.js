@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Cookies from "js-cookie";
 import { createPost } from "../services/post.service";
 import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
@@ -25,8 +25,8 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 const CreatePostPage = () => {
     const token = Cookies.get('accessToken');
     // console.log("token", token);
-    console.log("render");
-
+    const [user] = useOutletContext();
+    console.log("render", user);
     const [files, setFiles] = useState([]);
     const navigate = useNavigate();
     const handleDrop = (acceptedFiles) => {
@@ -199,7 +199,8 @@ const CreatePostPage = () => {
         const data = {
             ...restValues,
             address: fullAddress,
-            images: images
+            images: images,
+            owner:user._id
 
         }
         console.log(data);

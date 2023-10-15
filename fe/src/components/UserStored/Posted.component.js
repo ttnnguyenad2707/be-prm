@@ -17,32 +17,32 @@ const Posted = () => {
     const [dataPosted, setDataPosted] = useState([]);
     const [dataDeleted, setDataDeleted] = useState([]);
     const [isOpenModal, setIsOpenModal] = useState(false)
-   const [postId, setPostId] = useState('');
-    
+    const [postId, setPostId] = useState('');
+
     const handleTabChange = (key) => {
         setActiveTab(key);
     };
 
     useEffect(() => {
-        if(activeTab === "1"){
+        if (activeTab === "1") {
             getPostedStore("posted").then(data => { setDataPosted(data.data) });
         }
-        else if(activeTab === "2"){
+        else if (activeTab === "2") {
             getPostedStore("deleted").then(data => { setDataDeleted(data.data) });
         }
 
     }, [activeTab])
-    
+
 
     const handleDelete = (id) => {
         const result = window.confirm("Delete");
-        if(result ===  true){
+        if (result === true) {
             deletePost(id).then(() => {
                 // Sau khi xóa thành công, cập nhật lại state dataPosted
                 setDataPosted(prevData => prevData.filter(post => post._id !== id));
             });
         }
-        
+
     }
 
     const navigate = useNavigate();
@@ -61,10 +61,14 @@ const Posted = () => {
     }
 
     const handleDestroy = (id) => {
-        destroyPost(id).then(() => {
-            // Sau khi xóa vĩnh viễn thành công, cập nhật lại state dataPosted
-            setDataDeleted(prevData => prevData.filter(post => post._id !== id));
-        });;
+        if (window.confirm("Bạn thật sự muốn loại bỏ bài viết này ?")) {
+
+
+            destroyPost(id).then(() => {
+                // Sau khi xóa vĩnh viễn thành công, cập nhật lại state dataPosted
+                setDataDeleted(prevData => prevData.filter(post => post._id !== id));
+            });;
+        }
 
     }
     return (
@@ -95,7 +99,7 @@ const Posted = () => {
                     </div>
                     {/* <Tabs defaultActiveKey="1" items={items} />  */}
                     <Tabs activeKey={activeTab} onChange={handleTabChange} >
-                        <TabPane tab="Tab 1" key="1">
+                        <TabPane tab="Bài viết đã đăng" key="1">
                             <Table dataSource={dataPosted}>
                                 <ColumnGroup>
                                     <Column
@@ -118,7 +122,7 @@ const Posted = () => {
 
                             </Table>
                         </TabPane>
-                        <TabPane tab="Tab 2" key="2">
+                        <TabPane tab="Bài Viết đã xóa" key="2">
                             <Table dataSource={dataDeleted}>
                                 <ColumnGroup>
                                     <Column

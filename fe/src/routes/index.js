@@ -12,6 +12,7 @@ import PostEdit from "../components/PostedAction/PostEdit.component";
 import Adminpage from "../page/Adminpage.js";
 import SignUp from "../components/LoginSigup/SignUp";
 import CreatePost from "../components/CreatePost/CreatePost.component";
+import PostDetails from "../components/PostDetails/PostDetails.component";
 
 export const appRoutes = createBrowserRouter([
     {
@@ -59,6 +60,10 @@ export const appRoutes = createBrowserRouter([
             {
                 path: '/post/create',
                 element: <CreatePost/>
+            },
+            {
+                path: '/post/slug',
+                element: <PostDetails/>
             },
             
         ]

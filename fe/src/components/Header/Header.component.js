@@ -4,7 +4,7 @@ import Icon, { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, Unorde
 import Searchbox from '../Searchbox/Searchbox.component.js';
 import './header.scss'
 
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { checkUser } from '../../services/auth.service.js';
 
@@ -70,7 +70,7 @@ const Headercomponent = () => {
             <div className='position-sticky top-0 start-0 end-0 z-1 background-primary' style={{ padding: '15px 0' }}>
                 <Row className='header-container container-fluid justify-content-between ps-5 pe-5'>
                     <div className='d-flex align-item-center gap-1'>
-                        <h1 id='logo'>HomeRadar</h1>
+                        <Link to="/" id='logo'>HomeRadar</Link>
                         <button className='btn-list'>
                             <Dropdown
                                 menu={{
@@ -111,7 +111,7 @@ const Headercomponent = () => {
                             <MessageOutlined style={{ fontSize: '25px', color: '#e25e3e' }} />
                             <p className='number-notification'>1</p>
                         </button>
-                        {user ? <a className='login'> {user.lastname}</a> : <a className='login'>Đăng nhập</a>}
+                        {user ? <Link to='/stored/posted' className='login'> {user.lastname}</Link> : <a className='login'>Đăng nhập</a>}
                         <button className='btn-post'><PlusOutlined style={{ fontSize: '15px', color: 'white' }} /> Đăng tin</button>
                     </div>
                 </Row>

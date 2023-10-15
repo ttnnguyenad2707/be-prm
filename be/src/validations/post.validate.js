@@ -17,6 +17,7 @@ module.exports = {
             security:Joi.array().items(Joi.string()),
             utils:Joi.array().items(Joi.string()),
             interior:Joi.array().items(Joi.string()),
+            images:Joi.array().items(Joi.string()),
         }).validateAsync(req.body, { abortEarly: false });
 
         next();
@@ -35,6 +36,8 @@ module.exports = {
             security:Joi.array().items(Joi.string()),
             utils:Joi.array().items(Joi.string()),
             interior:Joi.array().items(Joi.string()),
+            images:Joi.array().items(Joi.string()),
+
         }).validateAsync(req.body, { abortEarly: false });
 
         next();

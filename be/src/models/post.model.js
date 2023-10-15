@@ -30,7 +30,7 @@ const Post = new mongoose.Schema({
         required:true
     },
     deposit:{
-        type:String,
+        type:Number,
     },
     security:{
         type:[String],
@@ -51,7 +51,10 @@ const Post = new mongoose.Schema({
     deletedAt: {
       type: Date,
       default: null,
-    }
+    },
+    images:{
+      type:[String],
+  }, 
 
 }, { timestamps: true });
 

@@ -18,11 +18,11 @@ app.use(
   require('./routes')
 );
 
-cloudinary.config({
-  cloud_name: 'dtpujfoo8',
-  api_key: '697855136624351',
-  api_secret: 'gYkgLXmSaCiVhCM40clYpA_dFr8'
-});
+// cloudinary.config({
+//   cloud_name: 'dtpujfoo8',
+//   api_key: '697855136624351',
+//   api_secret: 'gYkgLXmSaCiVhCM40clYpA_dFr8'
+// });
 
 const startServer = async () => {
   try {

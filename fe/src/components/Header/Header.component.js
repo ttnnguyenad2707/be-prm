@@ -12,7 +12,7 @@ import { checkUser } from '../../services/auth.service.js';
 
 const Headercomponent = () => {
     const token = Cookies.get('accessToken');
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
 
     const navigate = useNavigate()
     useEffect(() => {

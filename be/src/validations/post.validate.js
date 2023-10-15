@@ -18,6 +18,7 @@ module.exports = {
             utils:Joi.array().items(Joi.string()),
             interior:Joi.array().items(Joi.string()),
             images:Joi.array().items(Joi.string()),
+            owner:Joi.string().not(null).required(),
         }).validateAsync(req.body, { abortEarly: false });
 
         next();

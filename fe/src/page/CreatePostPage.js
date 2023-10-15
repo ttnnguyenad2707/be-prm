@@ -1,6 +1,6 @@
 import React from 'react';
 import "./CreatePostPage.scss"
-const CreatePostPage = () => {zzzzzz
+const CreatePostPage = () => {
     return (
         <div>
             <div className="container">

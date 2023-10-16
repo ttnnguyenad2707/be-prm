@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row, Input, Space, Dropdown, message, Button, Checkbox, Menu } from 'antd';
-import Icon, { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, UnorderedListOutlined,UserOutlined  } from '@ant-design/icons';
+import Icon, { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, UnorderedListOutlined, UserOutlined } from '@ant-design/icons';
 import Searchbox from '../Searchbox/Searchbox.component.js';
 import './header.scss'
 import { Link, NavLink } from 'react-router-dom';
@@ -8,12 +8,13 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { checkUser } from '../../services/auth.service.js';
 import CreatePostPage from '../../page/CreatePostPage.js';
-
+import axios from 'axios';
 /* logo , search space with icon search, icon notifiaction, icon search, link login, link register, button post */
 
 const Headercomponent = () => {
     const token = Cookies.get('accessToken');
     const [user, setUser] = useState(null);
+    const [location, setLocation] = useState();
     const navigate = useNavigate()
     useEffect(() => {
         if (!token) {
@@ -23,7 +24,7 @@ const Headercomponent = () => {
 
         checkUser(token)
             .then((res) => {
-                
+
                 setUser(res.data);
             })
             .catch((error) => {
@@ -39,7 +40,7 @@ const Headercomponent = () => {
     const onClick = ({ key }) => {
         message.info(`Click on item ${key}`);
     };
-    const hadlePostCreateButton = ()=>{
+    const hadlePostCreateButton = () => {
         if (!token) {
             navigate('/login');
             return;
@@ -71,7 +72,27 @@ const Headercomponent = () => {
             return [...prevSelectedKeys, key];
         });
     };
+    const fetchLocation = async () => {
+        try {
+            const response = await axios.get('https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json');
+            const transformedData = response.data.map(item => ({
+                title: item.Name,
+                value: item.Name,
+                children: item.Districts ? item.Districts.map(child => ({
+                    title: child.Name,
+                    value: child.Name,
+                })) : []
+            }));
 
+            setLocation(transformedData);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchLocation();
+    }, [])
     return (
         <div className='Body'>
             <div className='position-sticky top-0 start-0 end-0 z-1 background-primary' style={{ padding: '15px 0' }}>
@@ -100,7 +121,7 @@ const Headercomponent = () => {
                     </Col> */}
                     <div className='d-flex align-items-center gap-5'>
                         <div className='search-box' >
-                            <Searchbox />
+                            <Searchbox datalocation={location} />
                         </div>
                         <button className='btn-bell position-relative'>
                             <BellOutlined style={{ fontSize: '30px', color: '#e25e3e' }} />
@@ -121,7 +142,7 @@ const Headercomponent = () => {
                         {/* {user ? <a className='login'> {user.lastname}</a> : <a className='login'>Đăng nhập</a>} */}
                         {user ? (
                             <NavLink className='login d-flex flex-column justify-content-center' style={{ color: '#E66D4F' }}>
-                                <UserOutlined  style={{ color: '#E66D4F', fontSize: '30px' }}/>
+                                <UserOutlined style={{ color: '#E66D4F', fontSize: '30px' }} />
                                 {user.lastname}
                             </NavLink>
                         ) : (
@@ -129,11 +150,11 @@ const Headercomponent = () => {
                                 Đăng nhập
                             </NavLink>
                         )}
-                        <button className='btn-post' onClick={()=>{hadlePostCreateButton()}}><PlusOutlined style={{ fontSize: '15px', color: 'white' }} /> Đăng tin</button>
+                        <button className='btn-post' onClick={() => { hadlePostCreateButton() }}><PlusOutlined style={{ fontSize: '15px', color: 'white' }} /> Đăng tin</button>
                     </div>
                 </Row>
             </div>
-            <Outlet context={[user]}/>
+            <Outlet context={[user]} />
         </div>
     );
 }

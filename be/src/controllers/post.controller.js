@@ -9,6 +9,8 @@ module.exports = {
     }),
     updateOne: asyncHandler(async (req,res)=>{
         const post=await PostService.updateOne(req,res);
+    }),
+    getDetail: asyncHandler(async(req,res)=>{
+        return post=await PostService.getDetail(req,res);
     })
-
 };

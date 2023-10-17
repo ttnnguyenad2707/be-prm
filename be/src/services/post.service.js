@@ -11,9 +11,12 @@ class PostService {
     async updateOne(req,res){
         const {}=req.body;
     }
+    async getDetail(req,res){
+        const {}=req.body;
+        console.log("detail");
+        res.send("detail post")
+    }
     
-
-
 }
 
 module.exports = new PostService();

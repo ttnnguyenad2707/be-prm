@@ -6,13 +6,12 @@ import ChangePass from "../components/Profile/ChangePass.component";
 import Landingpage from "../page/Landingpage.js";
 import Posted from "../components/UserStored/Posted.component";
 import PostEdit from "../components/PostedAction/PostEdit.component";
-
+import SearchResultpage from "../page/Searchpage.js";
 
 
 import Adminpage from "../page/Adminpage.js";
 import SignUp from "../components/LoginSigup/SignUp";
 import CreatePost from "../components/CreatePost/CreatePost.component";
-import PostDetails from "../components/PostDetails/PostDetails.component";
 
 export const appRoutes = createBrowserRouter([
     {
@@ -59,8 +58,15 @@ export const appRoutes = createBrowserRouter([
             },
             {
                 path: '/post/create',
-                element: <CreatePost/>
+                // element: <CreatePost/>
+                element: <CreatePostPage/>
+
             },
+            {
+                path: '/search',
+                element: <SearchResultpage/>
+            },
+            
             {
                 path: '/post/slug',
                 element: <PostDetails/>

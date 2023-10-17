@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row, Input, Space, Dropdown, message, Button, Checkbox, Menu } from 'antd';
-import Icon, { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import Icon, { MessageOutlined, BellOutlined, PlusOutlined, DownOutlined, UnorderedListOutlined,UserOutlined  } from '@ant-design/icons';
 import Searchbox from '../Searchbox/Searchbox.component.js';
 import './header.scss'
-
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { checkUser } from '../../services/auth.service.js';
 
@@ -12,7 +12,7 @@ import { checkUser } from '../../services/auth.service.js';
 
 const Headercomponent = () => {
     const token = Cookies.get('accessToken');
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -38,7 +38,13 @@ const Headercomponent = () => {
     const onClick = ({ key }) => {
         message.info(`Click on item ${key}`);
     };
-
+    const hadlePostCreateButton = ()=>{
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+        navigate("/post/create")
+    }
     const items = [
         {
             label: '1st menu item',
@@ -91,12 +97,12 @@ const Headercomponent = () => {
                     {/* <Col >
                         
                     </Col> */}
-                    <div className='d-flex align-items-center gap-3'>
+                    <div className='d-flex align-items-center gap-5'>
                         <div className='search-box' >
                             <Searchbox />
                         </div>
                         <button className='btn-bell position-relative'>
-                            <BellOutlined style={{ fontSize: '25px', color: '#e25e3e' }} />
+                            <BellOutlined style={{ fontSize: '30px', color: '#e25e3e' }} />
                             <p className='number-notification' >1</p>
                             <div className='list-notification'>
                                 <div className='notification'>
@@ -108,11 +114,21 @@ const Headercomponent = () => {
                             </div>
                         </button>
                         <button className='btn-mess position-relative'>
-                            <MessageOutlined style={{ fontSize: '25px', color: '#e25e3e' }} />
+                            <MessageOutlined style={{ fontSize: '30px', color: '#e25e3e' }} />
                             <p className='number-notification'>1</p>
                         </button>
-                        {user ? <Link to='/stored/posted' className='login'> {user.lastname}</Link> : <a className='login'>Đăng nhập</a>}
-                        <button className='btn-post'><PlusOutlined style={{ fontSize: '15px', color: 'white' }} /> Đăng tin</button>
+                        {/* {user ? <a className='login'> {user.lastname}</a> : <a className='login'>Đăng nhập</a>} */}
+                        {user ? (
+                            <NavLink className='login d-flex flex-column justify-content-center' style={{ color: '#E66D4F' }}>
+                                <UserOutlined  style={{ color: '#E66D4F', fontSize: '30px' }}/>
+                                {user.lastname}
+                            </NavLink>
+                        ) : (
+                            <NavLink to="/login" className='login' style={{ color: '#E66D4F' }} >
+                                Đăng nhập
+                            </NavLink>
+                        )}
+                        <button className='btn-post' onClick={()=>{hadlePostCreateButton()}}><PlusOutlined style={{ fontSize: '15px', color: 'white' }} /> Đăng tin</button>
                     </div>
                 </Row>
             </div>

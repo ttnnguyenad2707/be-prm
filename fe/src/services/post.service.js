@@ -10,6 +10,15 @@ export const getPostedStore = async (type) => {
 
     }
 }
+export const createPost = async (data,token) => {
+    return await axios.post(`${URL_SERVER}/post/`,data,{
+        withCredentials: true,
+        
+        headers: {
+            token: `Bearer ${token}`,
+        }
+    })
+}
 
 export const getPostedById = async (id) => {
     return await axios.get(`${URL_SERVER}/post/${id}`)

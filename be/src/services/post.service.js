@@ -1,5 +1,6 @@
 // @ts-ignore
-const Post = require('../models/post.model')
+const Post = require('../models/post.model');
+const User = require('../models/user.model');
 
 
 class PostService {
@@ -18,6 +19,10 @@ class PostService {
 
     async updateOne(req, res) {
         const { } = req.body;
+    }
+    async getAll(req,res){
+        const result=await Post.find();
+        return res.status(200).json(result)
     }
     async readPostWithQuantity(req,res){
         const quantityOfPost = await req.query.number;
@@ -39,9 +44,6 @@ class PostService {
         } catch (error) {
             return res.status(500).json({Error: error.toString()})
         }
-            
-        
-        
     }
     async getDetail(req, res) {
         const { } = req.body;
@@ -96,6 +98,7 @@ class PostService {
             return res.status(500).json({Error: error.toString()})
         }  
     }
+    
     async destroyPostById(req,res){
         const idPost = await req.params.id;
         try {
@@ -150,7 +153,18 @@ class PostService {
             return res.status(500).json({ error: error.toString() });
         }
     }
-    
+    async favoritePost(req,res){
+        try {
+            const {userId,idPost}=req.body;
+            const getUser=await User.findById({_id:userId});
+            const getAllFarvorite=getUser.favoritePost;
+            getAllFarvorite.push(idPost);
+            const result =await User.findByIdAndUpdate({_id:userId},{favoritePost:getAllFarvorite});
+            return res.status(200).json("Add favorites succesfully");
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
 }
 
 module.exports = new PostService();

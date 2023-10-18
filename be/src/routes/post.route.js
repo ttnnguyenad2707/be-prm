@@ -17,7 +17,8 @@ router.get('/:id',verifyToken,PostController.getPostedById);
 
 
 router.post('/upload',upload.single('image'),PostController.upload)
-
+router.get('/search/:searchParam/:currentPage', verifyToken, PostController.getSearchValue);
+router.post('/search/filter', verifyToken, PostController.getFilterValue);
 
 
 

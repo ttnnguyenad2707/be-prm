@@ -14,16 +14,9 @@ router.post('/:id', verifyToken,PostController.restorePost);
 router.get('/getdeletedpost',verifyToken,PostController.loadDeletedPost);
 router.delete('/destroy/:id',verifyToken,PostController.destroyPostById)
 router.get('/:id',verifyToken,PostController.getPostedById);
-
-
 router.post('/upload',upload.single('image'),PostController.upload)
 router.get('/search/:searchParam/:currentPage', verifyToken, PostController.getSearchValue);
 router.post('/search/filter', verifyToken, PostController.getFilterValue);
-
-
-
 router.get('/:id',verifyToken,PostController.getDetail);
-router.get('/search/:searchParam', verifyToken, PostController.getSearchValue);
-router.post('/filter/', verifyToken, PostController.getFilterValue);
 
 module.exports = router;

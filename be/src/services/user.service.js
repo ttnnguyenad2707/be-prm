@@ -2,6 +2,15 @@
 const User = require('../models/user.model')
 
 class UserService {
+    async getOne(req,res){
+        try {
+            const {userId}=req.params;
+            const result=await User.findById(userId);
+            return res.status(200).json(result)
+        } catch (error) {
+            return res.status(500).json({"error":error.message});
+        }
+    }
 
     async updateOne(req, res) {
         try {

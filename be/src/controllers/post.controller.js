@@ -36,14 +36,12 @@ module.exports = {
     }),
     getSearchValue: asyncHandler(async (req, res) => {
         const result = await PostService.getSearchValue(req, res);
-        console.log(req.params.searchParam);
-        return result
     }),
     getFilterValue: asyncHandler(async (req, res) => {
         const { address, area, price, utils, currentPage} = req.body;
         try {
             const result = await PostService.getFilterValue({ address, area, price, utils, currentPage });
-            return res.status(200).json({ message: "Search result", data: result });
+            return result
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }

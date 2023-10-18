@@ -16,7 +16,7 @@ router.delete('/destroy/:id',PostController.destroyPostById)
 router.get('/:id',PostController.getPostedById);
 router.post('/upload',upload.single('image'),PostController.upload)
 router.get('/search/:searchParam/:currentPage', verifyToken, PostController.getSearchValue);
-router.post('/filter/', verifyToken, PostController.getFilterValue);
+router.post('/search/filter', verifyToken, PostController.getFilterValue);
 
 
 

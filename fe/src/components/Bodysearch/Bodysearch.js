@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Bodysearch.scss'
 import {
     UserOutlined,
     EnvironmentOutlined
 } from '@ant-design/icons';
 const Searchresult = (dataSoure) => {
+    const [favorite, setFavorite]= useState();
+
+    const Checkclick = () => {
+        var element = document.getElementById("icon-favorite");
+        if(element.className === "bi-heart"){
+            element.className = "bi-heart-fill";
+        }
+        else {
+            element.className = "bi-heart";
+        }
+    }
     return (
         <div className='Bodysearch d-flex flex-column gap-3'>
             <div className='Card_search d-flex gap-4'>
@@ -22,6 +33,7 @@ const Searchresult = (dataSoure) => {
                         <p>Hoa Lac</p>
                     </div>
                 </div>
+               <button className='btn-favorite d-flex mb-3 me-4' onClick={()=>Checkclick()}><i className="bi-heart" id='icon-favorite'> Save</i></button>
             </div>
         </div>
     );

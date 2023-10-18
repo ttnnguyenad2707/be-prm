@@ -15,15 +15,23 @@ const CarouselProduct = ({ data }) => {
     const dataSource = data;
     const navigate = useNavigate();
     const { Meta } = Card;
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-    };
+    let settings;
+    if(data.length > 5){
+        settings = {
+            infinite: true,
+            speed: 500,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+        };
+
+    }
+    else{
+        settings = {
+            unslick: true,
+        }
+    }
 
     const displayDetails = (id) => {
         console.log(id);

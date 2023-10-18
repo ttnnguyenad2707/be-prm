@@ -15,7 +15,8 @@ router.get('/getdeletedpost',PostController.loadDeletedPost);
 router.delete('/destroy/:id',PostController.destroyPostById)
 router.get('/:id',PostController.getPostedById);
 router.post('/upload',upload.single('image'),PostController.upload)
-
+router.get('/search/:searchParam/:currentPage', verifyToken, PostController.getSearchValue);
+router.post('/filter/', verifyToken, PostController.getFilterValue);
 
 
 

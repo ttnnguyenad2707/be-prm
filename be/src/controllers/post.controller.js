@@ -11,6 +11,9 @@ module.exports = {
     upload: asyncHandler(async (req, res) => {
         const post = await PostService.upload(req, res);
     }),
+    getAll:asyncHandler(async (req, res) => {
+        const post = await PostService.getAll(req, res);
+    }),
     updateOne: asyncHandler(async (req, res) => {
         const post = await PostService.updateOne(req, res);
     }),

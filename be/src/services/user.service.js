@@ -12,6 +12,25 @@ class UserService {
             return res.status(500).json({"error":error.message});
         }
     }
+    
+    async updateUserForAdmin(req,res){
+        try {
+            const idUser=req.params.id;
+            const findUser= User.find({_id:idUser});
+            if(!findUser) return res.status(404).json("Not found User");
+            if(findUser.admin===true){
+                const result =await User.findByIdAndUpdate({_id:idUser},{admin:false})
+                return res.status(200).json("Update Successfully");
+            }
+            if(findUser.admin===false){
+                const result =await User.findByIdAndUpdate({_id:idUser},{admin:true});
+                return res.status(200).json("Update Successfully");
+            }
+            
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
     // get user list (admin page)
     async getUserlist(req,res){
         try {

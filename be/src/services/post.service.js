@@ -19,6 +19,10 @@ class PostService {
     async updateOne(req, res) {
         const { } = req.body;
     }
+    async getAll(req,res){
+        const result=await Post.find();
+        return res.status(200).json(result)
+    }
     async readPostWithQuantity(req,res){
         const quantityOfPost = await req.query.number;
         const result =await Post.find({}).limit(quantityOfPost);
@@ -39,9 +43,6 @@ class PostService {
         } catch (error) {
             return res.status(500).json({Error: error.toString()})
         }
-            
-        
-        
     }
     async getDetail(req, res) {
         const { } = req.body;

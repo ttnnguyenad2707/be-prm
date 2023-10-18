@@ -5,7 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import { TiDelete } from 'react-icons/ti'
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, TextField, TextareaAutosize } from "@mui/material";
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import Checkbox from '@mui/material/Checkbox';
@@ -242,7 +242,7 @@ const CreatePostPage = () => {
     };
     return (
         <div>
-            <div className="container">
+            <div className="container post-create">
                 <div className=" my-2">
                     <h1 className='createTitle'>Đăng Tin</h1>
                 </div>
@@ -315,7 +315,7 @@ const CreatePostPage = () => {
                                 </div>
 
                                 <div className="my-2">
-                                    <Field className="form-control" name="description" as={TextField} label="Mô tả bài đăng" variant="outlined" />
+                                    <Field className="form-control" name="description" as={TextareaAutosize} placeholder="Mô tả bài đăng" variant="outlined" row={4} style={{ height: '200px' }}/>
                                 </div>
                                 <div className="my-2">
                                     <Field className="form-control" name="area" as={TextField} label="Diện tích" variant="outlined" />

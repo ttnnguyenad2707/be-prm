@@ -36,7 +36,8 @@ class PostService {
         return res.status(200).json(result);
     }
     async getPosted(req,res){
-        const result =await Post.find({deleted: false});
+        const user_id = req.user.id;
+        const result =await Post.find({owner : user_id,deleted: false});
         return res.status(200).json(result);
     }
     async deletePost(req,res){

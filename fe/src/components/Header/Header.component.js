@@ -74,7 +74,7 @@ const Headercomponent = () => {
 
     return (
         <div className='Body'>
-            <div className='position-sticky top-0 start-0 end-0 z-1 background-primary' style={{ padding: '15px 0' }}>
+            <div className='position-sticky top-0 start-0 end-0 z-2 background-primary' style={{ padding: '15px 0' }}>
                 <Row className='header-container container-fluid justify-content-between ps-5 pe-5'>
                     <div className='d-flex align-item-center gap-1'>
                         <Link to="/" id='logo'>HomeRadar</Link>
@@ -120,7 +120,7 @@ const Headercomponent = () => {
                         </button>
                         {/* {user ? <a className='login'> {user.lastname}</a> : <a className='login'>Đăng nhập</a>} */}
                         {user ? (
-                            <NavLink className='login d-flex flex-column justify-content-center' style={{ color: '#E66D4F' }}>
+                            <NavLink to="/stored/posted" className='login d-flex flex-column justify-content-center' style={{ color: '#E66D4F' }}>
                                 <UserOutlined  style={{ color: '#E66D4F', fontSize: '30px' }}/>
                                 {user.lastname}
                             </NavLink>

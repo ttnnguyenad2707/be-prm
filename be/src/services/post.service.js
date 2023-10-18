@@ -50,7 +50,7 @@ class PostService {
     async getSearchValue(req, res) {
         const searchParam = req.params.searchParam;
         const currentPage = parseInt(req.params.currentPage);
-        const perPage = 5;
+        const perPage = 10;
     
         try {
             const skip = (currentPage - 1) * perPage;
@@ -110,7 +110,7 @@ class PostService {
     }
     async getFilterValue({ address, area, price, utils, currentPage }) {
         const query = {};
-        const perPage = 5;
+        const perPage = 10;
         try {
             const skip = (currentPage - 1) * perPage;
     
@@ -134,10 +134,21 @@ class PostService {
     
             return result;
         } catch (error) {
-            // Tạo đối tượng JSON response để báo lỗi
             return { error: error.message };
         }
     }
+    async getLandingPost(req, res) {
+        try {
+            const result = await Post.find().sort({ createDate: -1 }); 
+            return res.status(200).json({
+                message: "get landing post success",
+                data: result
+            });
+        } catch (error) {
+            return res.status(500).json({ error: error.toString() });
+        }
+    }
+    
 }
 
 module.exports = new PostService();

@@ -41,6 +41,9 @@ module.exports = {
     getSearchValue: asyncHandler(async (req, res) => {
         post = await PostService.getSearchValue(req, res);
     }),
+    getLandingPost: asyncHandler(async (req, res) => {
+        const post = await PostService.getLandingPost(req, res);
+    }),
     getFilterValue: asyncHandler(async (req, res) => {
         const { address, area, price, utils, currentPage} = req.body;
         try {

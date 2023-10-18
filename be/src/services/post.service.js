@@ -139,7 +139,9 @@ class PostService {
     }
     async getLandingPost(req, res) {
         try {
-            const result = await Post.find().sort({ createDate: -1 }); 
+            const result = await Post.find().sort({ createdAt: -1 })
+            .limit(10)
+            .exec(); 
             return res.status(200).json({
                 message: "get landing post success",
                 data: result

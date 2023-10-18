@@ -21,5 +21,8 @@ router.post('/upload',upload.single('image'),PostController.upload)
 
 
 
+router.get('/:id',verifyToken,PostController.getDetail);
+router.get('/search/:searchParam', verifyToken, PostController.getSearchValue);
+router.post('/filter/', verifyToken, PostController.getFilterValue);
 
 module.exports = router;

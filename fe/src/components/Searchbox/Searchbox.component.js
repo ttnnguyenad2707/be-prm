@@ -96,7 +96,7 @@ const Searchbox = ({datalocation}) => {
               }}
               treeData={locations}
               placeholder="Vị trí"
-              treeDefaultExpandAll
+              
               allowClear
             />
             <Select

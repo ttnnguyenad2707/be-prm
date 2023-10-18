@@ -5,20 +5,25 @@ const {verifyToken}=require("../middlewares/verifyToken.middleware");
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-router.post('/',validatePOST, PostController.createOne);
+router.post('/',verifyToken,validatePOST, PostController.createOne);
 router.put('/:id',verifyToken,validatePUT, PostController.updateOne);
 router.get('/getByNumberPost',PostController.readPostWithQuantity);
-router.get('/getPosted',PostController.getPosted);
-router.delete('/:id',PostController.deletePost);
-router.post('/:id', PostController.restorePost);
-router.get('/getdeletedpost',PostController.loadDeletedPost);
-router.delete('/destroy/:id',PostController.destroyPostById)
-router.get('/:id',PostController.getPostedById);
+router.get('/getPosted',verifyToken,PostController.getPosted);
+router.delete('/:id',verifyToken,PostController.deletePost);
+router.post('/:id', verifyToken,PostController.restorePost);
+router.get('/getdeletedpost',verifyToken,PostController.loadDeletedPost);
+router.delete('/destroy/:id',verifyToken,PostController.destroyPostById)
+router.get('/:id',verifyToken,PostController.getPostedById);
+
+
 router.post('/upload',upload.single('image'),PostController.upload)
 router.get('/search/:searchParam/:currentPage', verifyToken, PostController.getSearchValue);
 router.post('/search/filter', verifyToken, PostController.getFilterValue);
 
 
 
+router.get('/:id',verifyToken,PostController.getDetail);
+router.get('/search/:searchParam', verifyToken, PostController.getSearchValue);
+router.post('/filter/', verifyToken, PostController.getFilterValue);
 
 module.exports = router;

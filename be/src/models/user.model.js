@@ -22,6 +22,9 @@ const User = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    favoritePost:{
+        type: [String],
+    },
     refreshToken:{
         type:String,
     }

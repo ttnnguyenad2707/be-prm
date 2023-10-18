@@ -95,10 +95,10 @@ const Headercomponent = () => {
     }, [])
     return (
         <div className='Body'>
-            <div className='position-sticky top-0 start-0 end-0 z-1 background-primary' style={{ padding: '15px 0' }}>
+            <div className='position-sticky top-0 start-0 end-0 z-2 background-primary' style={{ padding: '15px 0' }}>
                 <Row className='header-container container-fluid justify-content-between ps-5 pe-5'>
-                    <div className='d-flex align-item-center gap-3'>
-                        <h1 id='logo'>HomeRadar</h1>
+                    <div className='d-flex align-item-center gap-1'>
+                        <Link to="/" id='logo'>HomeRadar</Link>
                         <button className='btn-list'>
                             <Dropdown
                                 menu={{

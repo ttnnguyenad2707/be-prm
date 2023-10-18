@@ -59,4 +59,7 @@ module.exports = {
     favoritePost: asyncHandler(async (req, res) => {
         const user = await PostService.favoritePost(req, res);
     }),
+    RemovefavoritePost: asyncHandler(async (req, res) => {
+        const user = await PostService.removeFavoritePost(req, res);
+    }),
 };

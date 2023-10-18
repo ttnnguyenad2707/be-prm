@@ -21,7 +21,12 @@ class PostService {
         const { } = req.body;
     }
     async getAll(req,res){
-        const result=await Post.find();
+        const currentPage = parseInt(req.params.currentPage);
+        const perPage = 10;
+        const skip = (currentPage - 1) * perPage;
+        const result=await Post.find()
+        .skip(skip)
+        .limit(perPage).exec() ;
         return res.status(200).json(result)
     }
     async readPostWithQuantity(req,res){
@@ -165,6 +170,22 @@ class PostService {
             return res.status(500).json(error.message);
         }
     }
+    async removeFavoritePost(req, res) {
+        try {
+            const { userId, idPost } = req.body;
+            const getUser = await User.findById(userId);
+            const getAllFavorite = getUser.favoritePost;
+            
+            const updatedFavorite = getAllFavorite.filter(postId => postId !== idPost);
+    
+            const result = await User.findByIdAndUpdate(userId, { favoritePost: updatedFavorite });
+    
+            return res.status(200).json("Remove favorite successfully");
+        } catch (error) {
+            return res.status(500).json(error.message);
+        }
+    }
+    
 }
 
 module.exports = new PostService();

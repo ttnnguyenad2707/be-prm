@@ -35,6 +35,7 @@
     "sass": "^1.69.0",
     "scss": "^0.2.4",
     "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.7.2",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },

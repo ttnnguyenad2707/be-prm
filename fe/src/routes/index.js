@@ -14,12 +14,17 @@ import SignUp from "../components/LoginSigup/SignUp";
 import CreatePost from "../components/CreatePost/CreatePost.component";
 import CreatePostPage from "../page/CreatePostPage";
 import PostDetails from "../components/PostDetails/PostDetails.component";
+import Chat from "../components/Chat/Chat";
 
 export const appRoutes = createBrowserRouter([
     {
         path: '',
         element: <Header />,
         children: [
+            {
+                path:'/chat',
+                element: <Chat/>
+            },
 
             {
                 path: '/',

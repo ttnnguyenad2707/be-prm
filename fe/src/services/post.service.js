@@ -86,3 +86,22 @@ export const destroyPost = async (id) => {
         }
     })
 }
+export const searchPost = async (title,currentPage) => {
+    return await axios.get(`${URL_SERVER}/post/search/${title}/${currentPage}`,{ 
+        withCredentials: true,
+
+        headers: {
+            token: `Bearer ${token}`,
+        }
+    })
+}
+
+export const getAllPost_pagging = async (currentPage) => {
+    return await axios.get(`${URL_SERVER}/post/${currentPage}`,{ 
+        withCredentials: true,
+
+        headers: {
+            token: `Bearer ${token}`,
+        }
+    })
+}

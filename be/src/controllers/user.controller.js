@@ -1,11 +1,12 @@
 const asyncHandler = require('../utils/async-handler');
 const UserService = require("../services/user.service");
 
-const getCurrentUser = async (req, res) => {
 
-}
 module.exports = {
 
+    getOne: asyncHandler(async (req, res) => {
+        const user = await UserService.getOne(req, res);
+    }),
     updateOne: asyncHandler(async (req, res) => {
         const user = await UserService.updateOne(req, res);
     }),

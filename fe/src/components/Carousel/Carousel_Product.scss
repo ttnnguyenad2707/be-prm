@@ -1,0 +1,7 @@
+.Card{
+    width: 100%;
+}
+.Card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,20 @@
+.background-img{
+    width: 100%;
+}
+.card-category:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.card-category{
+    position: relative;
+    width: 96%;
+    cursor: pointer;
+}
+.category{
+    position: absolute;
+    top: 0;
+    font-size: large;
+    font-weight: bold;
+    padding-left: 10%;
+    top: 15px;
+}

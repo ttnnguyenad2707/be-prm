@@ -18,12 +18,12 @@ class UserService {
             const idUser=req.params.id;
             const findUser= User.find({_id:idUser});
             if(!findUser) return res.status(404).json("Not found User");
-            if(findUser.admin===true){
-                const result =await User.findByIdAndUpdate({_id:idUser},{admin:false})
+            if(findUser.status===true){
+                const result =await User.findByIdAndUpdate({_id:idUser},{status:false})
                 return res.status(200).json("Update Successfully");
             }
-            if(findUser.admin===false){
-                const result =await User.findByIdAndUpdate({_id:idUser},{admin:true});
+            if(findUser.status===false){
+                const result =await User.findByIdAndUpdate({_id:idUser},{status:true});
                 return res.status(200).json("Update Successfully");
             }
             
@@ -49,6 +49,8 @@ class UserService {
             return res.status(502).json({"error":error.message});
         }
     }
+
+    
 
 }
 

@@ -1,5 +1,6 @@
 // @ts-ignore
-const Post = require('../models/post.model')
+const Post = require('../models/post.model');
+const User = require('../models/user.model');
 
 
 class PostService {
@@ -97,6 +98,7 @@ class PostService {
             return res.status(500).json({Error: error.toString()})
         }  
     }
+    
     async destroyPostById(req,res){
         const idPost = await req.params.id;
         try {
@@ -137,6 +139,19 @@ class PostService {
         } catch (error) {
             // Tạo đối tượng JSON response để báo lỗi
             return { error: error.message };
+        }
+    }
+
+    async favoritePost(req,res){
+        try {
+            const {userId,idPost}=req.body;
+            const getUser=await User.findById({_id:userId});
+            const getAllFarvorite=getUser.favoritePost;
+            getAllFarvorite.push(idPost);
+            const result =await User.findByIdAndUpdate({_id:userId},{favoritePost:getAllFarvorite});
+            return res.status(200).json("Add favorites succesfully");
+        } catch (error) {
+            return res.status(500).json(error.message);
         }
     }
 }

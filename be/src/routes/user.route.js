@@ -5,6 +5,6 @@ const {verifyToken,verifyTokenAdmin}=require("../middlewares/verifyToken.middlew
 
 router.get('/getlistusers',verifyTokenAdmin,UserController.getUserlist)
 router.put('/:id',verifyToken,validatePUT, UserController.updateOne);
-router.put('/admin/:id',verifyTokenAdmin,validatePUT, UserController.updateOneForAdmin);
+router.put('/role/:id',verifyTokenAdmin, UserController.updateOneForAdmin);
 
 module.exports = router;

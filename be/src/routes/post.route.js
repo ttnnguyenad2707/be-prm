@@ -6,6 +6,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 router.post('/',verifyToken,validatePOST, PostController.createOne);
+router.put('/favorites',verifyToken,PostController.favoritePost);
 router.put('/:id',verifyToken,validatePUT, PostController.updateOne);
 router.get('/getByNumberPost',PostController.readPostWithQuantity);
 router.get('/',PostController.getAll);
@@ -19,5 +20,6 @@ router.post('/upload',upload.single('image'),PostController.upload)
 router.get('/search/:searchParam/:currentPage', PostController.getSearchValue);
 router.post('/search/filter', PostController.getFilterValue);
 router.get('/:id',PostController.getDetail);
+
 
 module.exports = router;

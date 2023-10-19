@@ -24,7 +24,7 @@ class PostService {
         const currentPage = parseInt(req.params.currentPage);
         const perPage = 10;
         const skip = (currentPage - 1) * perPage;
-        const result=await Post.find()
+        const result=await Post.find({deleted: false})
         .skip(skip)
         .limit(perPage).exec() ;
         return res.status(200).json(result)
@@ -181,7 +181,7 @@ class PostService {
     async getPostedByOwner(req, res) {
         try {
             const {id} = req.params;
-            const listPost =await Post.find({owner: id});
+            const listPost =await Post.find({owner: id,deleted:false});
             return res.status(200).json(listPost);
         } catch (error) {
             return res.status(500).json({Error: error.toString()})           

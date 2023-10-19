@@ -21,7 +21,7 @@ export const getPostedStore = async (type,token1) => {
         return await axios.get(`${URL_SERVER}/post/getdeletedpost`,{  
 
             headers: {
-                token: `Bearer ${token}`,
+                token: `Bearer ${token1}`,
             }
         })
 
@@ -95,9 +95,9 @@ export const getPosterInfo = async (id) => {
     return await axios.get(`${URL_SERVER}/user/${id}`)
 }
 
-export const getAllPost = async () => {
-    return await axios.get(`${URL_SERVER}/post/`)
-}
+// export const getAllPost = async () => {
+//     return await axios.get(`${URL_SERVER}/post/`)
+// }
 
 export const getPostedByOwner = async (id) => {
     return await axios.get(`${URL_SERVER}/post/getpostedbyowner/${id}`)
@@ -112,12 +112,29 @@ export const searchPost = async (title,currentPage) => {
     })
 }
 
-export const getAllPost_pagging = async (currentPage) => {
+export const getAllPost = async (currentPage) => {
     return await axios.get(`${URL_SERVER}/post/getAll/${currentPage}`,{ 
         withCredentials: true,
 
         headers: {
             token: `Bearer ${token}`,
+        }
+    })
+}
+
+export const getPostfilter = async (address,area,price,utils,currentPage) => {
+    return await axios.post(`${URL_SERVER}/post/search/filter`,{ 
+        withCredentials: true,
+
+        headers: {
+            token: `Bearer ${token}`,
+        },
+        body: {
+            address: address,
+            area: area,
+            price: price,
+            utils:utils,
+            currentPage: currentPage,
         }
     })
 }

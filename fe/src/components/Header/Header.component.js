@@ -136,6 +136,7 @@ const Headercomponent = () => {
                             </div>
                         </button>
                         <button className='btn-mess position-relative'>
+                            <Link to={'/chat'}>abcd</Link>
                             <MessageOutlined style={{ fontSize: '30px', color: '#e25e3e' }} />
                             <p className='number-notification'>1</p>
                         </button>

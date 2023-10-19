@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 const token = Cookies.get('accessToken');
 
-export const getPostedStore = async (type) => {
+export const getPostedStore = async (type,token1) => {
 
     
     if(type === 'posted'){
@@ -12,7 +12,7 @@ export const getPostedStore = async (type) => {
             withCredentials: true,
     
             headers: {
-                token: `Bearer ${token}`,
+                token: `Bearer ${token1}`,
             }
         })
     }
@@ -21,7 +21,7 @@ export const getPostedStore = async (type) => {
         return await axios.get(`${URL_SERVER}/post/getdeletedpost`,{  
 
             headers: {
-                token: `Bearer ${token}`,
+                token: `Bearer ${token1}`,
             }
         })
 
@@ -85,6 +85,22 @@ export const destroyPost = async (id) => {
             token: `Bearer ${token}`,
         }
     })
+}
+
+export const getDetailPost = async (slug) => {
+    return await axios.get(`${URL_SERVER}/post/${slug}`)
+}
+
+export const getPosterInfo = async (id) => {
+    return await axios.get(`${URL_SERVER}/user/${id}`)
+}
+
+// export const getAllPost = async () => {
+//     return await axios.get(`${URL_SERVER}/post/`)
+// }
+
+export const getPostedByOwner = async (id) => {
+    return await axios.get(`${URL_SERVER}/post/getpostedbyowner/${id}`)
 }
 export const searchPost = async (title,currentPage) => {
     return await axios.get(`${URL_SERVER}/post/search/${title}/${currentPage}`,{ 

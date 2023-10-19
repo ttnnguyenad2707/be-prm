@@ -10,6 +10,7 @@ import { checkUser } from '../services/auth.service';
 import { getPostedStore } from '../services/post.service.js';
 import { useNavigate, NavLink } from 'react-router-dom'
 import {LoadingOutlined} from '@ant-design/icons';
+import { getAllPost } from '../services/post.service.js';
 const Landingpage = () => {
     const [user, setUser] = useState({});
     const [data, setData] = useState();
@@ -46,7 +47,7 @@ const Landingpage = () => {
     };
     const getData = async () => {
         try {
-            const posts = (await getPostedStore('posted')).data;
+            const posts = (await getAllPost(1)).data;
             setData(posts);
         } catch (error) {
 

@@ -96,12 +96,29 @@ export const searchPost = async (title,currentPage) => {
     })
 }
 
-export const getAllPost_pagging = async (currentPage) => {
-    return await axios.get(`${URL_SERVER}/post/${currentPage}`,{ 
+export const getAllPost = async (currentPage) => {
+    return await axios.get(`${URL_SERVER}/post/getAll/${currentPage}`,{ 
         withCredentials: true,
 
         headers: {
             token: `Bearer ${token}`,
+        }
+    })
+}
+
+export const getPostfilter = async (address,area,price,utils,currentPage) => {
+    return await axios.post(`${URL_SERVER}/post/search/filter`,{ 
+        withCredentials: true,
+
+        headers: {
+            token: `Bearer ${token}`,
+        },
+        body: {
+            address: address,
+            area: area,
+            price: price,
+            utils:utils,
+            currentPage: currentPage,
         }
     })
 }

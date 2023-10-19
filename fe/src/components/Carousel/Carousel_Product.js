@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './Carousel_Product.scss';
+import { Link, NavLink } from 'react-router-dom';
 import {
     HomeOutlined,
     DollarOutlined,
@@ -16,7 +17,7 @@ const CarouselProduct = ({ data }) => {
     const navigate = useNavigate();
     const { Meta } = Card;
     let settings;
-    if(data.length > 5){
+    if (data.length > 5) {
         settings = {
             infinite: true,
             speed: 500,
@@ -27,15 +28,20 @@ const CarouselProduct = ({ data }) => {
         };
 
     }
-    else{
+    else {
         settings = {
             unslick: true,
         }
     }
-
-    const displayDetails = (id) => {
-        console.log(id);
-        navigate('/detail', { id: id });
+    const Checkclick = () => {
+        var element = document.getElementById("icon-favorite");
+        console.log(element.className === "bi-heart");
+        if (element.className === "bi-heart") {
+            element.className = "bi-heart-fill";
+        }
+        else {
+            element.className = "bi-heart";
+        }
     }
     return (
         <div className="product-list">
@@ -50,17 +56,19 @@ const CarouselProduct = ({ data }) => {
                                     width: '95%',
                                     minHeight: '480px'
                                 }}
-                                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                                onClick={() => displayDetails(post._id)}
+                                cover={<img alt="example" src={post.images[0]} />}
                             >
                                 <div className='d-flex flex-column gap-2'>
                                     <h6 className='d-flex gap-2'>
-                                        <HomeOutlined />
-                                        {post.title}
+                                        <NavLink to={`/detail/${post._id}`} className='login' style={{ color: 'Black' }} >
+                                            <HomeOutlined />
+                                            {post.title}
+                                        </NavLink>
                                     </h6>
                                     <p className='d-flex gap-2'><DollarOutlined />{post.price}</p>
                                     <p className='d-flex gap-2'><EnvironmentOutlined />{post.address}</p>
                                 </div>
+                                <button className='btn-favorite d-flex mb-3 me-4' onClick={Checkclick}><i className="bi-heart" id='icon-favorite'> Save</i></button>
                             </Card>
                         </div>
                     );

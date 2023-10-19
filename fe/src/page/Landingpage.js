@@ -55,6 +55,8 @@ const Landingpage = () => {
     useEffect(() => {
         getData();
     }, []);
+
+    console.log(data);
     return (
         <>
         {isLoading == false && (<><div className="unset-slick-dots-li-button-before">

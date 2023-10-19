@@ -6,7 +6,7 @@ import './header.scss'
 import { Link, NavLink } from 'react-router-dom';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { checkUser } from '../../services/auth.service.js';
+import { checkUser, logout } from '../../services/auth.service.js';
 import CreatePostPage from '../../page/CreatePostPage.js';
 import axios from 'axios';
 /* logo , search space with icon search, icon notifiaction, icon search, link login, link register, button post */
@@ -89,6 +89,12 @@ const Headercomponent = () => {
             console.error(error);
         }
     };
+    const handleLogout = () => {
+        logout();
+        Cookies.remove('accessToken');
+        navigate("/")
+        window.location.reload();
+    }
 
     useEffect(() => {
         fetchLocation();
@@ -98,7 +104,7 @@ const Headercomponent = () => {
             <div className='position-sticky top-0 start-0 end-0 z-2 background-primary' style={{ padding: '15px 0' }}>
                 <Row className='header-container container-fluid justify-content-between ps-5 pe-5'>
                     <div className='d-flex align-item-center gap-1'>
-                        <Link to="/" id='logo'>HomeRadar</Link>
+                        <Link to="/" className='fw-bold pe-5' id='logo'>HomeRadar</Link>
                         <button className='btn-list'>
                             <Dropdown
                                 menu={{
@@ -151,7 +157,11 @@ const Headercomponent = () => {
                                 Đăng nhập
                             </NavLink>
                         )}
-                        <button className='btn-post' onClick={() => { hadlePostCreateButton() }}><PlusOutlined style={{ fontSize: '15px', color: 'white' }} /> Đăng tin</button>
+                        <button className='btn bt-primary p-2 fw-bold' onClick={() => { hadlePostCreateButton() }}><PlusOutlined /> Đăng tin</button>
+                        <Link to='/stored/posted' className='btn bt-primary p-2 fw-bold'>Quản lý tin</Link>
+                        <button className='btn bt-primary p-2 fw-bold' onClick={() => { handleLogout() }}><PlusOutlined /> Đăng Xuất</button>
+
+
                     </div>
                 </Row>
             </div>

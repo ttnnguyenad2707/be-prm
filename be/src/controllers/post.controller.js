@@ -56,4 +56,7 @@ module.exports = {
     favoritePost: asyncHandler(async (req, res) => {
         const user = await PostService.favoritePost(req, res);
     }),
+    getPostedByOwner: asyncHandler(async (req, res) => {
+        const user = await PostService.getPostedByOwner(req, res);
+    }),
 };

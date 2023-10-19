@@ -46,7 +46,14 @@ class PostService {
         }
     }
     async getDetail(req, res) {
-        const { } = req.body;
+        try {
+            const {slug} = req.params;
+            const PostDetails =await Post.findOne({slug: slug});
+            return res.status(200).json(PostDetails);
+        } catch (error) {
+            return res.status(500).json({Error: error.toString()})           
+        }
+
     }
 
     async getSearchValue(req, res) {
@@ -153,6 +160,17 @@ class PostService {
         } catch (error) {
             return res.status(500).json(error.message);
         }
+    }
+
+    async getPostedByOwner(req, res) {
+        try {
+            const {id} = req.params;
+            const listPost =await Post.find({owner: id});
+            return res.status(200).json(listPost);
+        } catch (error) {
+            return res.status(500).json({Error: error.toString()})           
+        }
+
     }
 }
 

@@ -86,3 +86,19 @@ export const destroyPost = async (id) => {
         }
     })
 }
+
+export const getDetailPost = async (slug) => {
+    return await axios.get(`${URL_SERVER}/post/${slug}`)
+}
+
+export const getPosterInfo = async (id) => {
+    return await axios.get(`${URL_SERVER}/user/${id}`)
+}
+
+export const getAllPost = async () => {
+    return await axios.get(`${URL_SERVER}/post/`)
+}
+
+export const getPostedByOwner = async (id) => {
+    return await axios.get(`${URL_SERVER}/post/getpostedbyowner/${id}`)
+}

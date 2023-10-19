@@ -11,12 +11,13 @@ import {
     DollarOutlined,
     EnvironmentOutlined
 } from '@ant-design/icons';
+import PostCard from '../PostCard/PostCard.component';
 const CarouselProduct = ({ data }) => {
     const dataSource = data;
     const navigate = useNavigate();
     const { Meta } = Card;
     let settings;
-    if(data.length > 5){
+    // if(data.length > 5){
         settings = {
             infinite: true,
             speed: 500,
@@ -26,12 +27,12 @@ const CarouselProduct = ({ data }) => {
             autoplaySpeed: 2000,
         };
 
-    }
-    else{
-        settings = {
-            unslick: true,
-        }
-    }
+    // }
+    // else{
+    //     settings = {
+    //         unslick: true,
+    //     }
+    // }
 
     const displayDetails = (id) => {
         console.log(id);
@@ -44,24 +45,7 @@ const CarouselProduct = ({ data }) => {
                 {dataSource?.map((post) => {
                     return (
                         <div className='Card'>
-                            <Card
-                                hoverable
-                                style={{
-                                    width: '95%',
-                                    minHeight: '480px'
-                                }}
-                                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                                onClick={() => displayDetails(post._id)}
-                            >
-                                <div className='d-flex flex-column gap-2'>
-                                    <h6 className='d-flex gap-2'>
-                                        <HomeOutlined />
-                                        {post.title}
-                                    </h6>
-                                    <p className='d-flex gap-2'><DollarOutlined />{post.price}</p>
-                                    <p className='d-flex gap-2'><EnvironmentOutlined />{post.address}</p>
-                                </div>
-                            </Card>
+                            <PostCard post={post}/>
                         </div>
                     );
                 })}

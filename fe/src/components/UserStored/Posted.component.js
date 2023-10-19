@@ -14,10 +14,12 @@ import TabPane from 'antd/es/tabs/TabPane';
 import Column from 'antd/es/table/Column';
 import { deletePost, destroyPost, getPostedStore, restorePost } from '../../services/post.service';
 import ColumnGroup from 'antd/es/table/ColumnGroup';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 const Posted = () => {
+    const navigate = useNavigate();
+    
     const [isLoading, setIsLoading] = useState(true);
-const [user]  = useOutletContext();
+    const [user]  = useOutletContext();
     useEffect(() => {
         if (user) {
             setIsLoading(false);
@@ -57,7 +59,6 @@ const [user]  = useOutletContext();
 
     }
 
-    const navigate = useNavigate();
 
     const handleEdit = (id) => {
         navigate(`${id}`);
@@ -104,7 +105,7 @@ const [user]  = useOutletContext();
                                         <div className='username'>{user.firstname}</div>
                                         <div className='list-button d-flex gap-2'>
                                             <button className='btn btn-outline-danger'>Trang cá nhân</button>
-                                            <button className='btn btn-outline-danger'>Đăng bài viết mới </button>
+                                            <Link to='/post/create' className='btn btn-outline-danger'>Đăng bài viết mới </Link>
                                         </div>
                                     </div>
                                 </div>

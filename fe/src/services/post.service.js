@@ -102,3 +102,22 @@ export const getAllPost = async () => {
 export const getPostedByOwner = async (id) => {
     return await axios.get(`${URL_SERVER}/post/getpostedbyowner/${id}`)
 }
+export const searchPost = async (title,currentPage) => {
+    return await axios.get(`${URL_SERVER}/post/search/${title}/${currentPage}`,{ 
+        withCredentials: true,
+
+        headers: {
+            token: `Bearer ${token}`,
+        }
+    })
+}
+
+export const getAllPost_pagging = async (currentPage) => {
+    return await axios.get(`${URL_SERVER}/post/getAll/${currentPage}`,{ 
+        withCredentials: true,
+
+        headers: {
+            token: `Bearer ${token}`,
+        }
+    })
+}

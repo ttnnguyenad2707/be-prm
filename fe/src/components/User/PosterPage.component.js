@@ -7,6 +7,7 @@ import PostCard from "../PostCard/PostCard.component";
 
 const PosterProfile = () => {
     const {posterId} = useParams();
+    console.log(posterId);
     const [posterInfo,setPosterInfo] = useState({})
     const [posted,setPosted] = useState([])
     console.log(posted);

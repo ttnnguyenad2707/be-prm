@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Tooltip, Input, Space, Select, TreeSelect } from 'antd';
 import { SearchOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 const Searchbox = ({datalocation}) => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const locations = datalocation;
+  const navigate = useNavigate();
   const nameLocation = [];
   const [modalText, setModalText] = useState('Content of the modal');
   const { Search } = Input;
-  const onSearch = (value, _e, info) => console.log(info?.source, value);
+  const onSearch = (value, _e, info) => {
+    setTimeout(() => {
+      setOpen(false);
+      setConfirmLoading(false);
+      navigate('/search', { state: { value } });
+    }, 500);
+  };
   let searchResult = "";
   let category = [];
   let filter = [];
@@ -40,9 +49,11 @@ const Searchbox = ({datalocation}) => {
   const handleChange = (value) => {
     console.log(`selected ${value}`);
     category.push(value);
+    console.log(category);
   };
   const handleOk = () => {
-    filter.push(...category, searchResult);
+    console.log(category);
+    //filter.push(category);
     console.log(filter, 'hay');
     setModalText('The modal will be closed after two seconds');
     setConfirmLoading(true);

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './Carousel_Product.scss';
+import { Link, NavLink } from 'react-router-dom';
 import {
     HomeOutlined,
     DollarOutlined,
@@ -17,7 +18,7 @@ const CarouselProduct = ({ data }) => {
     const navigate = useNavigate();
     const { Meta } = Card;
     let settings;
-    // if(data.length > 5){
+    // if (data.length > 5) {
         settings = {
             infinite: true,
             speed: 500,
@@ -28,15 +29,20 @@ const CarouselProduct = ({ data }) => {
         };
 
     // }
-    // else{
+    // else {
     //     settings = {
     //         unslick: true,
     //     }
     // }
-
-    const displayDetails = (id) => {
-        console.log(id);
-        navigate('/detail', { id: id });
+    const Checkclick = () => {
+        var element = document.getElementById("icon-favorite");
+        console.log(element.className === "bi-heart");
+        if (element.className === "bi-heart") {
+            element.className = "bi-heart-fill";
+        }
+        else {
+            element.className = "bi-heart";
+        }
     }
     return (
         <div className="product-list">

@@ -7,7 +7,7 @@ import { UserContext } from '../App';
 import React, { useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { checkUser } from '../services/auth.service';
-import { getAllPost, getPostedStore } from '../services/post.service.js';
+import { getAllPost, getAllPost_pagging, getPostedStore } from '../services/post.service.js';
 import { useNavigate, NavLink } from 'react-router-dom'
 import {LoadingOutlined} from '@ant-design/icons';
 const Landingpage = () => {
@@ -38,7 +38,7 @@ const Landingpage = () => {
     };
     const getData = async () => {
         try {
-            const posts = (await getAllPost()).data;
+            const posts = (await getAllPost_pagging(1)).data;
             setData(posts);
         } catch (error) {
 
@@ -47,6 +47,8 @@ const Landingpage = () => {
     useEffect(() => {
         getData();
     }, []);
+
+    console.log(data);
     return (
         <>
         {isLoading == true && (<><div className="unset-slick-dots-li-button-before">

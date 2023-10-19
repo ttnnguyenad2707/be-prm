@@ -159,7 +159,7 @@ const Headercomponent = () => {
                         )}
                         <button className='btn bt-primary p-2 fw-bold' onClick={() => { hadlePostCreateButton() }}><PlusOutlined /> Đăng tin</button>
                         {token && (<Link to='/stored/posted' className='btn bt-primary p-2 fw-bold'>Quản lý tin</Link>)}
-                        <button className='btn bt-primary p-2 fw-bold' onClick={() => { handleLogout() }}><PlusOutlined /> Đăng Xuất</button>
+                        {token && (<button className='btn bt-primary p-2 fw-bold' onClick={() => { handleLogout() }}><PlusOutlined /> Đăng Xuất</button>)}
 
 
                     </div>

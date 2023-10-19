@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 const token = Cookies.get('accessToken');
 
-export const getPostedStore = async (type) => {
+export const getPostedStore = async (type,token1) => {
 
     
     if(type === 'posted'){
@@ -12,7 +12,7 @@ export const getPostedStore = async (type) => {
             withCredentials: true,
     
             headers: {
-                token: `Bearer ${token}`,
+                token: `Bearer ${token1}`,
             }
         })
     }

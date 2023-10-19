@@ -15,8 +15,10 @@ import Column from 'antd/es/table/Column';
 import { deletePost, destroyPost, getPostedStore, restorePost } from '../../services/post.service';
 import ColumnGroup from 'antd/es/table/ColumnGroup';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom';
+import Cookies from 'js-cookie';
 const Posted = () => {
     const navigate = useNavigate();
+    const token1 = Cookies.get('accessToken');
     
     const [isLoading, setIsLoading] = useState(true);
     const [user]  = useOutletContext();
@@ -39,10 +41,10 @@ const Posted = () => {
 
     useEffect(() => {
         if (activeTab === "1") {
-            getPostedStore("posted").then(data => { setDataPosted(data.data) });
+            getPostedStore("posted",token1).then(data => { setDataPosted(data.data) });
         }
         else if (activeTab === "2") {
-            getPostedStore("deleted").then(data => { setDataDeleted(data.data) });
+            getPostedStore("deleted",token1).then(data => { setDataDeleted(data.data) });
         }
 
     }, [activeTab])

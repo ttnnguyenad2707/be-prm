@@ -85,7 +85,7 @@ class PostService {
     }
     async loadDeletedPost(req,res){
         try {
-            const result = await Post.find({deleted: true});
+            const result = await Post.find({deleted: true,owner:req.user.id});
             return res.status(200).json(result);
         } catch (error) {
             return res.status(500).json({Error: error.toString()})

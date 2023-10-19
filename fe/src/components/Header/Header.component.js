@@ -49,11 +49,8 @@ const Headercomponent = () => {
     }
     const items = [
         {
-            label: '1st menu item',
+            label: 'Danh sách nhà trọ',
             key: '1',
-            render: () => {
-
-            }
         },
         {
             label: '2nd menu item',
@@ -72,6 +69,10 @@ const Headercomponent = () => {
             return [...prevSelectedKeys, key];
         });
     };
+
+    const checkClickItem = (a) => {
+        navigate('/search', { state: {listpage: "list page"} });
+    }
     const fetchLocation = async () => {
         try {
             const response = await axios.get('https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json');
@@ -103,7 +104,7 @@ const Headercomponent = () => {
                             <Dropdown
                                 menu={{
                                     items,
-                                    onClick,
+                                    onClick: (item) => checkClickItem(item),
                                 }}
                             >
                                 <a onClick={(e) => e.preventDefault()}>

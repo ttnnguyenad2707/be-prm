@@ -5,7 +5,9 @@ const {verifyToken,}=require("../middlewares/verifyToken.middleware");
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-router.post('/',verifyToken,validatePOST, PostController.createOne);
+
+
+router.post('/', PostController.createOne);
 router.get('/getlandingPost',PostController.getLandingPost);
 router.put('/favorites',verifyToken,PostController.favoritePost);
 router.put('/favorites/Removefavorites',verifyToken,PostController.RemovefavoritePost);
